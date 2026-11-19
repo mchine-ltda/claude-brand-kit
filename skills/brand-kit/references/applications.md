@@ -86,6 +86,32 @@ lid on a stone shelf, the billboard in a real underpass, warm light, real
 textures. Coded drawings can't show people, fabric or real materials;
 photographs can.
 
+### Check the plan and the model first (costs nothing)
+
+Before the disclaimer, find out what the person's plan can actually run, so
+the numbers you quote are real:
+
+- Read the balance and plan (Higgsfield: `higgsfield account status`) and the
+  price per image of each candidate model (`higgsfield generate cost <model>
+  --prompt t --aspect_ratio 3:4 --image <ref>`), with the reference image and
+  quality you'll really use: references, resolution and quality all change
+  the price.
+- **Free plans often block the best models.** On Higgsfield's free plan the
+  GPT Image models fail with `job_minimum_basic_plan_required`; a blocked
+  request is refused before it runs and costs nothing. Try the preferred
+  model first; if it's blocked, move to the next one that takes reference
+  images at a similar price (on Higgsfield's free plan, Seedream 5.0 Flash
+  worked at 0.5 credits per 2k image), and confirm the balance didn't move.
+- Preferred order for logos on products: a GPT Image model (copies a
+  reference mark most faithfully) → Seedream 5.0 Flash / Pro → Nano Banana →
+  Kling O1 Image. Never switch to a model that costs more per image than
+  you quoted without asking again.
+- Tell the person which model you'll use and, if their plan blocked a better
+  one, say so plainly: "Your free plan can't run GPT Image, which copies logos
+  most faithfully; I'll use Seedream 5.0 Flash at the same price. A paid plan
+  would likely need fewer tries." Never suggest upgrading as the answer; it's
+  their call.
+
 ### The disclaimer (say it every time, before anything is generated)
 
 Whenever photo-real is offered or chosen, tell the person in plain words,
@@ -97,7 +123,8 @@ before the first image (adapt the tool name and numbers):
 > match your brand; every try costs credits. I'll make **N images** (about
 > **N–3N tries** at most) and tell you exactly how many I used. You can stop at
 > any point and keep the coded version, which is free. This skill never charges
-> anything itself.
+> anything itself. I'll use **<model>**{, because your plan doesn't include
+> <better model>}.
 
 Then ask for an explicit yes (`AskUserQuestion`: *Go ahead with photo-real ·
 Keep it coded (free)*). If the tool shows a price or a credit count, quote it;
@@ -141,10 +168,20 @@ never from its own guess:
    - any letters spell the name exactly, in the right case and font style;
    - the colours are the brand's (no new accent, no pure white or black);
    - no extra text, logos, warped hands or melted objects.
-   If it fails: retry once with the problem named in the prompt ("the arch
-   was too narrow; keep the attached proportions"). If letters keep failing,
-   generate that piece without letters and lay the wordmark on with
-   "2 · Overlay". Count every try in the tally.
+   If it fails, retry with what worked in testing:
+   - **Describe the mark's geometry in words** as well as attaching it.
+     Models shrink and round off shapes; spell out what makes the mark the
+     mark ("a tall arch, taller than wide, two long straight legs that
+     continue well below the dot; the dot sits inside the lower half").
+   - **Edit, don't re-roll:** when the scene is good and only the logo is
+     off, send the previous image as a second reference and ask to "keep this
+     photo exactly; change only the logo so it matches the first reference".
+     It keeps what was right and usually fixes the mark.
+   - Tell the model to keep things off the logo (drawstrings, straps, hands).
+   - If letters keep failing, generate that piece without letters and lay the
+     wordmark on with "2 · Overlay".
+   Count every try in the tally. Save every try in `photo/` so the person can
+   see what was rejected and why.
 
 ### 2 · Overlay (the fallback): a blank scene + the real logo laid on in code
 

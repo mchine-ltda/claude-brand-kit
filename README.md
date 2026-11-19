@@ -276,6 +276,13 @@ the model gets the logo or colours wrong. Claude says the plan before it
 starts, asks first, never retries a piece more than 3 times without asking,
 and ends with a count of every image it generated.
 
+**Will it work on a free generator plan?** Usually, with a catch: free plans
+often block the best models (on Higgsfield's free plan, the GPT Image models
+need a paid plan). Claude checks your balance and which models your plan can
+run before it starts, picks the best one available at a similar price, and
+tells you if a better model is locked; blocked requests cost nothing. Free
+plans also often don't allow commercial use, so check before printing.
+
 **What about fonts?** It defaults to free Google Fonts (SIL Open Font Licence).
 If you use a paid font, put the licensed files in the kit's `assets/` folder;
 they are never bundled or shared.

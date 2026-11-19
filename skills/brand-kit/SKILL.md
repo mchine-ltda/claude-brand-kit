@@ -98,8 +98,10 @@ makes, sells and uses** — read `references/applications.md` now.
      credits).
    - One connected: ask (`AskUserQuestion`): *Coded, stylised (free) ·
      Photo-real with <tool> (better results; uses your <tool> credits, can
-     take 2–3 tries per piece)*. If they pick photo-real, give **the
-     disclaimer** from `references/applications.md` → "Photo-real" and get
+     take 2–3 tries per piece)*. If they pick photo-real, check the plan
+     and the model first (`references/applications.md` → "Check the plan
+     and the model first"; free plans often block the best models), then give
+     **the disclaimer** from `references/applications.md` → "Photo-real" and get
      a second, explicit yes before the first image. Then follow that
      section: reference mode (the real mark and wordmark as reference images,
      exact colours and finish in the prompt), check every image against the
@@ -183,7 +185,9 @@ The brand on merch. Read `references/merch.md` first.
    option. If there is none and they pick the generator, say how to connect
    one (an image-generation MCP server or skill, then start a new session) and
    offer to make the coded sheet meanwhile.
-   If they pick the generator, give **the disclaimer** from
+   If they pick the generator, check their plan's balance, which models it
+   can run and the real price per image (`references/applications.md` →
+   "Check the plan and the model first"), then give **the disclaimer** from
    `references/applications.md` → "Photo-real" with the real numbers (N
    pieces → N images, up to about 3N tries), check the tool's licence allows
    commercial use, and get a second, explicit yes before the first image.
