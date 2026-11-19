@@ -6,11 +6,11 @@
       <defs>
         <radialGradient id="cp-crown" cx=".4" cy=".28" r=".9"><stop offset="0" stop-color="#fff" stop-opacity=".2" /><stop offset=".5" stop-color="#fff" stop-opacity=".02" /><stop offset="1" stop-color="#000" stop-opacity=".55" /></radialGradient>
         <linearGradient id="cp-brim" x1="0" y1="0" x2=".2" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".1" /><stop offset=".45" stop-color="#fff" stop-opacity=".12" /><stop offset="1" stop-color="#fff" stop-opacity=".02" /></linearGradient>
-        <clipPath id="cp-brimclip"><path d="M26 52 C44 62 76 63 93 55 C91 66 70 78 44 78 C22 78 7 71 6 63 C6 58 15 54 26 52 Z" /></clipPath>
+        <clipPath id="cp-brimclip"><path d="M26 52 C44 62 76 63 93 55 C91.5 64 71 74.5 46 74.5 C26 74.5 12 69 11 62.6 C11 58 18 54 26 52 Z" /></clipPath>
         <filter id="cp-blur" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="1.8" /></filter>
       </defs>
       <!-- brim thickness under its front edge -->
-      <path d="M93 55 C91 66 70 78 44 78 C22 78 7 71 6 63 L6 65.4 C7.4 73.4 22 80.4 44 80.4 C71 80.4 92 68 93.4 56.6 Z" fill="#000" opacity=".6" />
+      <path d="M93 55 C91.5 64 71 74.5 46 74.5 C26 74.5 12 69 11 62.6 L11 65 C12.4 71.6 26 77 46 77 C72 77 92.2 66.2 93.4 56.6 Z" fill="#000" opacity=".6" />
       <!-- crown -->
       <path class="cloth" d="M26 52 C24 28 42 12 63 11 C85 10 101 25 100 47 Q99 52 93 55 C76 63 44 62 26 52 Z" />
       <path fill="url(#cp-crown)" d="M26 52 C24 28 42 12 63 11 C85 10 101 25 100 47 Q99 52 93 55 C76 63 44 62 26 52 Z" />
@@ -25,15 +25,15 @@
       </g>
       <circle cx="40" cy="25" r=".9" fill="#000" opacity=".55" /><circle cx="92" cy="27" r=".9" fill="#000" opacity=".5" />
       <!-- brim: its back edge is the crown's front edge -->
-      <path class="brim" d="M26 52 C44 62 76 63 93 55 C91 66 70 78 44 78 C22 78 7 71 6 63 C6 58 15 54 26 52 Z" />
-      <path fill="url(#cp-brim)" d="M26 52 C44 62 76 63 93 55 C91 66 70 78 44 78 C22 78 7 71 6 63 C6 58 15 54 26 52 Z" />
+      <path class="brim" d="M26 52 C44 62 76 63 93 55 C91.5 64 71 74.5 46 74.5 C26 74.5 12 69 11 62.6 C11 58 18 54 26 52 Z" />
+      <path fill="url(#cp-brim)" d="M26 52 C44 62 76 63 93 55 C91.5 64 71 74.5 46 74.5 C26 74.5 12 69 11 62.6 C11 58 18 54 26 52 Z" />
       <g clip-path="url(#cp-brimclip)"><path d="M24 52.6 C44 63 76 64 95 55.6" fill="none" stroke="#000" stroke-opacity=".75" stroke-width="5" filter="url(#cp-blur)" /></g>
       <g fill="none" stroke="#fff" stroke-opacity=".11" stroke-width=".4" stroke-dasharray="1.1 .9">
-        <path d="M90 58.6 C87 67.4 68 75.6 44 75.6 C24 75.6 10.6 69.6 9 63.6" />
-        <path d="M87.6 60.6 C84 67 67 73.4 44 73.4 C26 73.4 13.6 68.6 11.8 63.6" />
+        <path d="M90 58.6 C88 65 69 72.2 46 72.2 C28 72.2 15.4 67.6 13.8 63" />
+        <path d="M87.6 60.6 C85 65 68 70 46 70 C30 70 18.4 66.4 16.6 63" />
       </g>
       <path d="M26 52 C44 62 76 63 93 55" fill="none" stroke="#000" stroke-opacity=".6" stroke-width=".8" />
-      <path class="edge" d="M6.2 64.2 C7.6 72 22 79.2 44 79.2 C70 79.2 91 67.4 93.2 56" />
+      <path class="edge" d="M11.2 63.6 C12.6 70.4 26 75.8 46 75.8 C71 75.8 91.6 65.4 93.2 56" />
       <ellipse cx="63" cy="11.7" rx="3.3" ry="1.4" fill="#000" opacity=".45" />
       <ellipse class="btn" cx="63" cy="11" rx="3" ry="1.3" />
     </svg>
