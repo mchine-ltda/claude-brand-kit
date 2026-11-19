@@ -258,7 +258,7 @@
   .app-cap .edge { fill: none; stroke: var(--accent); stroke-width: 0.8; stroke-linecap: round; opacity: 0.9; }
   .app-cap .btn { fill: var(--accent); }
   /* centred on the front seam, where a cap's logo is embroidered */
-  .app-cap .emb { position: absolute; left: 50.5%; top: 24%; width: 17cqw; translate: -50% 0; transform: skewY(3deg); color: var(--light); filter: drop-shadow(0 0.25cqw 0 rgb(0 0 0 / 0.55)); }
+  .app-cap .emb { position: absolute; left: 51%; top: 33%; width: 17cqw; translate: -50% 0; transform: skewY(3deg); color: var(--light); filter: drop-shadow(0 0.25cqw 0 rgb(0 0 0 / 0.55)); }
 
   /* ---------- beanie (ribbed knit) ---------- */
   .app-beanie .shadow { bottom: 15%; width: 64cqmin; height: 6cqmin; }
