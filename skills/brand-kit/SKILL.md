@@ -20,8 +20,11 @@ complete kit for a fictional ceramics studio made with these skills — its
 | `/brand-identity` | (its own skill) interviews the person, writes the strategy, lets them pick a direction and a logo, then runs this skill |
 
 Everything is drawn in HTML/CSS/SVG and rendered locally, so every output is
-the person's to use. Photo-real mockups need an image generator: offer it
-where this file says to, and never spend credits without asking.
+the person's to use. **The coded path is complete and 100% free.**
+Photo-real mockups are optional and need an image generator the person
+connects: offer them where this file says to, always with the disclaimer in
+`references/applications.md` (credits, more than one try, a tally at the
+end), and never generate without their yes.
 
 ## Files in this skill
 
@@ -86,16 +89,21 @@ makes, sells and uses** — read `references/applications.md` now.
      drawn), render it, send it, and let them pick (`multiSelect`).
    Nothing is drawn for the final boards until the list is agreed. When nobody
    is there to answer (an automated run), use the proposal and say so.
-4. **Photo-real or coded?** The board should feel alive — a person wearing
-   the shirt, the billboard in a real street, the bottle with condensation —
-   which needs photographs. Look for an image-generation tool in this session
-   (an MCP tool like `generate_image`, or a skill like Higgsfield's). If there
-   is one, ask (`AskUserQuestion`): *Photo-real with <tool> (Recommended;
-   spends its credits) · Coded, stylised (free)*. If there is none, use coded
-   and say that connecting an image generator makes it photo-real. Follow
-   "Photo-real" in `references/applications.md`: scenes generated without
-   lettering, then the real logo and headline laid on in perspective with
-   `scripts/composite.py`.
+4. **Coded or photo-real?** Coded is the default and free. Photo-real
+   (the mark embroidered on a real hoodie, debossed in a mug, a billboard in
+   a real street) needs an image generator. Look for one in this session (an
+   MCP tool like `generate_image`, or a skill like Higgsfield's).
+   - None connected: make it coded, and say in one line that connecting an
+     image generator would make it photo-real (optional, uses that tool's
+     credits).
+   - One connected: ask (`AskUserQuestion`): *Coded, stylised (free) ·
+     Photo-real with <tool> (better results; uses your <tool> credits, can
+     take 2–3 tries per piece)*. If they pick photo-real, give **the
+     disclaimer** from `references/applications.md` → "Photo-real" and get
+     a second, explicit yes before the first image. Then follow that
+     section: reference mode (the real mark and wordmark as reference images,
+     exact colours and finish in the prompt), check every image against the
+     real files, overlay only as a fallback, and end with the tally.
 5. **The product**: if it sells a physical product, draw it as `PRODUCT_SVG`
    (see "Drawing the product") or generate it — the board isn't finished
    without it.
@@ -166,25 +174,31 @@ The brand on merch. Read `references/merch.md` first.
    item, render, send it, ask again.
 3. **Code or image generator?** Always ask before generating
    (`AskUserQuestion`):
-   *Image generator — photo-real (Recommended)* — real people wearing the
-   hoodie, a cap on a head, a tote on a shoulder; better to judge the merch
-   by; each image spends that tool's credits ·
-   *Code — stylised, like the rest of the kit (free, instant)*.
+   *Image generator — photo-real (Recommended for the best results)* — the
+   mark embroidered on a real hoodie, a cap on a head, a tote on a shoulder;
+   uses that tool's credits, and a piece can take 2–3 tries ·
+   *Code — stylised, like the rest of the kit (100% free, instant)*.
    Look for an image tool in this session first (an MCP tool such as
    `generate_image`, or a skill such as Higgsfield's) and name it in the
    option. If there is none and they pick the generator, say how to connect
    one (an image-generation MCP server or skill, then start a new session) and
-   offer to make the coded sheet meanwhile. Check the tool's licence allows
-   commercial use and say so.
+   offer to make the coded sheet meanwhile.
+   If they pick the generator, give **the disclaimer** from
+   `references/applications.md` → "Photo-real" with the real numbers (N
+   pieces → N images, up to about 3N tries), check the tool's licence allows
+   commercial use, and get a second, explicit yes before the first image.
 4. **Make it.**
    - *Coded:* in a copy of `brand.json` set `MERCH_NOTE` ("Coded mockups ·
      stylised") and `MERCH_TILES`, one tile per piece in the order chosen:
      `<figure class="t" id="m-hoodie"><figcaption>Hoodie</figcaption>{{item:hoodie}}<p class="spec">Heavyweight hoodie · Clay · chest print</p></figure>`.
      The summary card (type & palette) closes the sheet by itself — it is
      always there. Fill `templates/merch.html`.
-   - *Photo-real:* follow "Photo-real merch" in `references/merch.md`: render
-     the overlays, generate each scene blank, composite the real print,
-     look at each; then the tile is
+   - *Photo-real:* make the coded sheet first (free, so they always have
+     it), then follow "Photo-real merch" in `references/merch.md`: render
+     the overlays, generate each piece in reference mode with the real mark
+     as the reference image, check each against the real files (retry at
+     most 3 times, then fall back to the overlay or the coded piece), and
+     keep the tally; then the tile is
      `<figure class="t" id="m-hoodie"><figcaption>Hoodie</figcaption><div class="app app-photo"><img class="bg" src="merch/photo-hoodie.jpg" alt="" /></div><p class="spec">…</p></figure>`
      and `MERCH_NOTE` names the tool ("Photographs made with …").
      Mixing is fine (photo for worn pieces, code for a pin).
@@ -198,7 +212,9 @@ The brand on merch. Read `references/merch.md` first.
 7. **Look** at the sheet (Read it): every piece whole and recognisable, the
    print centred and readable, nothing clipped, no stray letters in photos.
    Fix and re-render. Then send the sheet, list the files, and say which
-   pieces are stylised drawings or generated photos.
+   pieces are stylised drawings or generated photos. After photo-real, end
+   with the tally: images generated, with which tool, and which pieces took
+   more than one try.
 
 ## House style
 

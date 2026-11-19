@@ -16,8 +16,8 @@ makes every real decision; Claude asks, proposes, renders, and builds.
 
 Everything is drawn in HTML/CSS/SVG and rendered with the local Chrome by the
 **brand-kit** skill's scripts (`~/.claude/skills/brand-kit/`); read its
-`SKILL.md` before stage 3. No image generator is used, so every file is the
-person's to use.
+`SKILL.md` before stage 3. No image generator is needed: the coded kit is
+complete, 100% free and the person's to use. Photo-real is an optional extra.
 
 If the person **already has a brand** (a name, a logo, colours), say so and
 use `/brand-kit` instead — this skill is for brands that don't exist yet. A
@@ -134,8 +134,9 @@ anything. One refinement round, then lock it.
    packaging, bag, shop, signage, stationery, uniform…) using the answers to
    "where will the brand be seen most"; the person keeps, removes or adds
    items, or asks for the visual menu; then, if an image tool is connected,
-   recommend photo-real (people wearing and using the brand, real places) —
-   coded drawings are the fallback. Nothing is drawn until the list is agreed.
+   offer photo-real (optional; give the credits and tries disclaimer from
+   `brand-kit/references/applications.md` and get a yes first). Coded is
+   always available and free. Nothing is drawn until the list is agreed.
 4. Run the full **/brand-kit** flow from `brand-kit/SKILL.md` in the same
    folder: logo files, moodboard (slots from the agreed list; no live site
    yet → the drawn phone/laptop screens), brand guidelines PDF with its "In

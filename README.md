@@ -31,12 +31,21 @@ file it makes is yours.
 
 > [!NOTE]
 > **Every image and asset on this page was made purely in code**, with no image
-> generator. Connecting one is **not necessary, but recommended for better
-> results**: with an image generator attached to Claude (an image-generation
-> MCP server or skill), mockups become photo-real (people wearing the merch,
-> the billboard in a real street, the product in someone's hands), and the real
-> logo is laid on top in code. Claude always asks before generating, because
-> each image spends that tool's credits.
+> generator. **The skills are 100% free** if you stay with the coded assets.
+> Connecting an image generator is **optional, but recommended for better
+> results**: mockups become photo-real (the mark embroidered on a real hoodie,
+> debossed in a mug, a billboard in a real street). Claude gives the generator
+> your real logo, colours and font as references, checks every image against
+> them, and redoes anything that drifted.
+
+> [!IMPORTANT]
+> **Photo-real uses your image generator's credits, not this skill.** Image
+> models don't get it right every time, so a piece can take **2–3 tries** to
+> match your logo and colours, and each try costs credits. Before generating,
+> Claude tells you how many images it plans to make and asks for your yes; at
+> the end it tells you exactly how many it used. You can stop at any point and
+> keep the free coded version. Check that your generator's plan allows
+> commercial use.
 
 ## How `/brand-identity` works
 
@@ -254,10 +263,18 @@ own.
 
 **Do I need an image generator?** No. By default every mockup (the box, the
 bag, the storefront, the product, the merch) is drawn in CSS and SVG, so the
-files are yours and it needs no account or API key. A connected image
-generator is **recommended for better, more realistic results**: Claude then
-asks whether you'd like photo-real shots instead (or a mix), and lays the real
-logo on top in code, because generators garble lettering.
+files are yours, it costs nothing and needs no account or API key. A connected
+image generator is **optional, recommended for more realistic results**:
+Claude asks whether you'd like photo-real shots (or a mix), sends your real
+logo files as references so the model embroiders, prints or debosses the
+actual mark, and checks each image. If a model keeps garbling the lettering,
+Claude lays the real logo on in code instead.
+
+**What will photo-real cost me?** Nothing from this skill. Only your image
+generator's own credits: about one image per piece, sometimes 2–3 tries when
+the model gets the logo or colours wrong. Claude says the plan before it
+starts, asks first, never retries a piece more than 3 times without asking,
+and ends with a count of every image it generated.
 
 **What about fonts?** It defaults to free Google Fonts (SIL Open Font Licence).
 If you use a paid font, put the licensed files in the kit's `assets/` folder;

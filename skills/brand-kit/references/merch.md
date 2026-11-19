@@ -48,29 +48,28 @@ colourway, write the item's markup in the tile with a style override, e.g.
 accent on a garment as body text; it is for details (drawstrings, a button,
 a band, a stripe).
 
-## Photo-real merch (an image generator connected)
+## Photo-real merch (optional, an image generator connected)
 
-The same method as `references/applications.md` → "Photo-real": generate the
-scene **with blank surfaces and no lettering**, then lay the real print on
-with `scripts/composite.py`. Same house style prompt (moody studio, soft
-accent rim light, 85 mm, no text, no logos). Ask for 4:5 portrait images
-(the sheet's tiles).
+Follow "Photo-real" in `references/applications.md`: **the disclaimer first**
+(credits, 2–3 tries per piece, the tally at the end, coded stays free), then
+reference mode (the real mark and wordmark as reference images, the finish
+named), the check against the real files, and the overlay only as a fallback.
+Ask for 4:5 portrait images (the sheet's tiles); one extra "hero" shot with
+several pieces together (hoodie, tote, mug, box, tag on a stone shelf) makes a
+strong top image for the sheet, if the person wants it (one more image).
 
-| Item | Scene to ask for | Blend |
+| Item | Scene | Finish to name |
 |---|---|---|
-| tee | a person seen from the front wearing a plain {BASE} t-shirt, blank chest, studio | multiply, opacity 0.9 |
-| tee-back | a person seen from behind in a plain {BASE} t-shirt, blank upper back, a street at dusk | multiply |
-| hoodie | a person in a plain {BASE} hoodie, hood down, {ACCENT} drawstrings, blank chest | multiply |
-| cap | a plain {INK} six-panel cap, blank front panel, a {ACCENT} top button; worn, three-quarter view | multiply |
-| beanie | a plain {BASE} ribbed beanie, a blank {LIGHT} woven label on the cuff, worn | normal |
-| tote | a person carrying a plain natural canvas tote, blank front, market or street | multiply |
-| mug | a plain {BASE} ceramic mug in someone's hands, blank side, morning light | normal |
-| bottle | a matte {BASE} water bottle, blank side, gym bag or desk, condensation | normal |
-| notebook | a plain {BASE} hardback notebook with a {ACCENT} elastic band, blank cover, on a desk with a pen | multiply |
-| pin | a plain round enamel pin with a gold rim and a blank {BASE} face, on a denim jacket lapel | normal (the mark-light overlay) |
-| sticker | a blank round {BASE} sticker on a laptop lid or a water bottle | normal |
+| tee | a person wearing a {BASE} t-shirt, the mark on the chest | screen printed in {LIGHT} |
+| tee-back | a person seen from behind in a {BASE} t-shirt, the wordmark and tag lines across the back, a street at dusk | screen printed |
+| hoodie | a {BASE} heavyweight hoodie, worn or laid on a stone surface, {ACCENT} drawstrings, the mark on the chest | embroidered in {LIGHT} thread |
+| cap | an {INK} six-panel cap, worn or on a shelf, a {ACCENT} top button, the mark on the front | embroidered |
+| beanie | a {BASE} ribbed beanie, a {LIGHT} woven label on the cuff with the mark | woven label |
+| tote | a natural canvas tote, on a shoulder or against a wall, the mark (or lockup) on the front | screen printed in {INK} |
+| mug | a {BASE} stoneware mug with a {ACCENT} glazed inside, in hands or on stone | debossed into the clay |
+| bottle | a matte {BASE} water bottle, desk or gym bag | laser engraved / printed |
+| notebook | a {BASE} hardback notebook, a {ACCENT} elastic band, on a desk with a pen | debossed |
+| pin | a round enamel pin with a gold rim on a denim lapel, the mark in {LIGHT} on {BASE} enamel | hard enamel |
+| sticker | a round {BASE} sticker with the mark, on a laptop lid or a bottle | vinyl print |
 
-Overlays come from `templates/overlays.html`: `ov-mark-light/dark`,
-`ov-wordmark-*`, `ov-lockup-*`, `ov-headline-*`, `ov-tag-light`. Light
-garments take the `-dark` pieces. Look at every result; regenerate warped
-hands, extra letters or wrong colours.
+Give the person the coded sheet too (free, always made), so they can compare.
