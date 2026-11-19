@@ -93,12 +93,20 @@ makes, sells and uses** — read `references/applications.md` now.
    (the mark embroidered on a real hoodie, debossed in a mug, a billboard in
    a real street) needs an image generator. Look for one in this session (an
    MCP tool like `generate_image`, or a skill like Higgsfield's).
-   - None connected: make it coded, and say in one line that connecting an
-     image generator would make it photo-real (optional, uses that tool's
-     credits).
-   - One connected: ask (`AskUserQuestion`): *Coded, stylised (free) ·
-     Photo-real with <tool> (better results; uses your <tool> credits, can
-     take 2–3 tries per piece)*. If they pick photo-real, check the plan
+   **Always ask, every run** (`AskUserQuestion`), whatever you know or
+   suspect about their plan, balance or licence: *Coded, stylised (free) ·
+   Photo-real with <tool> (better results; uses your <tool> credits, can
+   take 2–3 tries per piece)*. Never decide for the person and never reduce
+   the offer to a line in your message: the question is the offer.
+   - Put what you know **inside the photo-real option**, not instead of it:
+     a low balance, a free plan, a licence that may not allow commercial use
+     ("your free plan has 0.45 credits, about 0.5 per image; top up first").
+     The person decides with that in front of them.
+   - None connected: still ask, as *Coded (free) · Photo-real (connect an
+     image generator first, e.g. an image MCP server or Higgsfield's skill;
+     uses its credits)*. If they pick photo-real, say how to connect one, make
+     the coded version meanwhile, and generate in a later session.
+   - If they pick photo-real, check the plan
      and the model first (`references/applications.md` → "Check the plan
      and the model first"; free plans often block the best models), then give
      **the disclaimer** from `references/applications.md` → "Photo-real" and get
@@ -182,7 +190,10 @@ The brand on merch. Read `references/merch.md` first.
    *Code — stylised, like the rest of the kit (100% free, instant)*.
    Look for an image tool in this session first (an MCP tool such as
    `generate_image`, or a skill such as Higgsfield's) and name it in the
-   option. If there is none and they pick the generator, say how to connect
+   option. Always ask this, every run, whatever their plan, balance or
+   licence: put a known limit inside the option ("free plan, 0.45 credits:
+   top up first"), never skip the question because of it. If there is none
+   connected, still offer it; if they pick the generator, say how to connect
    one (an image-generation MCP server or skill, then start a new session) and
    offer to make the coded sheet meanwhile.
    If they pick the generator, check their plan's balance, which models it

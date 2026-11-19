@@ -133,10 +133,14 @@ anything. One refinement round, then lock it.
    the brand appears on from the business (the product itself first, its
    packaging, bag, shop, signage, stationery, uniform…) using the answers to
    "where will the brand be seen most"; the person keeps, removes or adds
-   items, or asks for the visual menu; then, if an image tool is connected,
-   offer photo-real (optional; give the credits and tries disclaimer from
-   `brand-kit/references/applications.md` and get a yes first). Coded is
-   always available and free. Nothing is drawn until the list is agreed.
+   items, or asks for the visual menu; then **always ask** (`AskUserQuestion`)
+   *Coded (free) · Photo-real*, every run, whatever their plan, balance or
+   licence, and even with no image tool connected (then the option says to
+   connect one first). Put known limits inside the photo-real option, never
+   skip the question because of them. If they pick photo-real, give the
+   credits and tries disclaimer from `brand-kit/references/applications.md`
+   and get a second yes first. Coded is always available and free. Nothing
+   is drawn until the list is agreed.
 4. Run the full **/brand-kit** flow from `brand-kit/SKILL.md` in the same
    folder: logo files, moodboard (slots from the agreed list; no live site
    yet → the drawn phone/laptop screens), brand guidelines PDF with its "In

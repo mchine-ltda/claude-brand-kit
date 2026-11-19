@@ -80,6 +80,13 @@ When the business sells a thing — a shoe, a candle, a chair, a ring — draw i
 Photo-real is **optional**. The coded path is complete and 100% free; never
 push the person towards a generator, and never generate without their yes.
 
+**But always offer it.** Every run asks *Coded · Photo-real* with
+`AskUserQuestion`, whether the person has a paid plan, a free plan, too few
+credits or no generator connected at all. A limit you know about (balance,
+blocked models, licence) goes into the photo-real option's description so
+they can decide; it is never a reason to skip the question or to decide for
+them in a line of prose.
+
 The look to aim for is a real brand campaign: the mark **embroidered** on a
 hoodie, **debossed** in a mug, **printed** on a canvas tote, the box with its
 lid on a stone shelf, the billboard in a real underpass, warm light, real
