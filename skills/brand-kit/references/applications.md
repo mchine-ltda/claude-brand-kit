@@ -123,8 +123,10 @@ before the first image (adapt the tool name and numbers):
 > match your brand; every try costs credits. I'll make **N images** (about
 > **N–3N tries** at most) and tell you exactly how many I used. You can stop at
 > any point and keep the coded version, which is free. This skill never charges
-> anything itself. I'll use **<model>**{, because your plan doesn't include
-> <better model>}.
+> anything itself. Free plans often block the best image models; I'll use
+> **<model>**{, because your plan doesn't include <better model>}. Shades can
+> look slightly different from your hex codes under real lighting; that's
+> normal for photos.
 
 Then ask for an explicit yes (`AskUserQuestion`: *Go ahead with photo-real ·
 Keep it coded (free)*). If the tool shows a price or a credit count, quote it;
@@ -166,7 +168,11 @@ never from its own guess:
 4. **Check every image (Read it) against the real files** before keeping it:
    - the mark's shape and proportions match `ov-mark-*.png`;
    - any letters spell the name exactly, in the right case and font style;
-   - the colours are the brand's (no new accent, no pure white or black);
+   - the colours are the brand's family (no new accent, no pure white or
+     black). Real lighting shifts shades a little (a warmer or lighter Clay
+     under a warm lamp): that is fine and expected, never a reason to retry.
+     Retry only for a different colour (a blue hoodie, a red dot on an orange
+     brand);
    - no extra text, logos, warped hands or melted objects.
    If it fails, retry with what worked in testing:
    - **Describe the mark's geometry in words** as well as attaching it.

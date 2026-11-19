@@ -44,8 +44,12 @@ file it makes is yours.
 > match your logo and colours, and each try costs credits. Before generating,
 > Claude tells you how many images it plans to make and asks for your yes; at
 > the end it tells you exactly how many it used. You can stop at any point and
-> keep the free coded version. Check that your generator's plan allows
-> commercial use.
+> keep the free coded version. **Free plans often block the best image
+> models** (on Higgsfield's free plan, the GPT Image models need a paid plan);
+> Claude checks what your plan can run before starting and tells you which
+> model it will use. Free plans also often don't allow commercial use, so
+> check before printing. Shades can look slightly different from your hex
+> codes under real lighting; that's normal for photos.
 
 ## How `/brand-identity` works
 
