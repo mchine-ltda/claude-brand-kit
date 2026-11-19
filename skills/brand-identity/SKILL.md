@@ -145,4 +145,4 @@ anything. One refinement round, then lock it.
    moodboard, and list the folder's files.
 6. End with what is still the person's to do: check the name's domain and
    trademark, licence any paid font they chose to swap in, and real photos
-   when they have them.
+   when they have them. Offer `/merch-mockup` if they'll want merch.

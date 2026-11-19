@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>{{BRAND}} Merch</title>
+<!--
+  brand-kit skill · MERCH SHEET (/merch-mockup). The chosen merch, one big
+  tile each, three to a row, closed by the summary card (always included).
+  MERCH_TILES is a run of tiles, one per item, each a figure with class "t",
+  an id ("m-hoodie"), a figcaption with the item's name and a p.spec line
+  ("Heavyweight hoodie · Clay · chest print"), then the item tag, or a
+  generated photo (div with class "app app-photo" holding an img.bg).
+  MERCH_NOTE is the line top right ("Coded mockups" or "Photographs made with …").
+  Render the sheet and each piece:
+    node SKILL_DIR/scripts/render.mjs merch.html --scale 2 \
+      --shot "#board=merch-mockups.png" --shot "#board=merch-mockups.jpg" \
+      --shot "#m-hoodie=merch/hoodie.png" …
+-->
+{{FONT_LINKS}}
+<style>
+  {{FONT_FACES}}
+  :root {
+    --base: {{BASE}}; --light: {{LIGHT}}; --accent: {{ACCENT}}; --accent-deep: {{ACCENT_DEEP}}; --ink: {{INK}}; --night: #0b0b0c;
+    --sans: {{DISPLAY_FONT}}, ui-sans-serif, system-ui, sans-serif;
+    --serif: {{ACCENT_FONT}}, Georgia, serif;
+    --mono: {{MONO_FONT}}, ui-monospace, Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--night); }
+  body { font-family: var(--sans); color: var(--light); }
+  .board { width: 1600px; padding: 40px; display: grid; gap: 22px; background: var(--night); }
+  .board-head { display: flex; justify-content: space-between; align-items: end; }
+  .board-head h1 { display: flex; align-items: center; gap: 18px; font-size: 56px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; text-transform: uppercase; }
+  .board-head h1 svg { width: 50px; color: var(--light); }
+  .board-head h1 em { font-family: var(--serif); font-weight: 400; text-transform: none; letter-spacing: -0.01em; }
+  .board-head h1 b { display: inline-block; width: 0.2em; height: 0.2em; margin-left: 0.04em; border-radius: 50%; background: var(--accent); }
+  .t .app .lbl { display: none; } /* the spec line replaces item labels */
+  .board-head p, .board-foot { font-family: var(--mono); font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: #9a9a96; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .t { position: relative; overflow: hidden; isolation: isolate; aspect-ratio: 4 / 5; border-radius: 18px; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.11); background: #151515; }
+  .t figcaption { position: absolute; z-index: 5; left: 16px; top: 14px; padding: 6px 12px; border-radius: 999px; background: rgb(11 11 12 / 0.7); backdrop-filter: blur(6px); font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #ecebe6; }
+  .t .spec { position: absolute; z-index: 5; left: 18px; right: 18px; bottom: 16px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgb(236 235 230 / 0.62); }
+  .board-foot { display: flex; justify-content: space-between; }
+  .wm .acc { color: var(--accent); }
+  .wm .dot-over { position: relative; }
+  .wm .dot-over b { position: absolute; left: 50%; top: 0.05em; width: 0.21em; height: 0.21em; translate: -50% 0; border-radius: 50%; background: var(--accent); }
+  {{>items.css}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="mark" viewBox="0 0 32 32">{{MARK_SVG}}</symbol></defs></svg>
+<main class="board" id="board">
+  <header class="board-head"><h1><svg viewBox="0 0 32 32"><use href="#mark" /></svg><span>{{BRAND}} <em>merch</em><b></b></span></h1><p>{{MERCH_NOTE}}</p></header>
+  <div class="grid">{{MERCH_TILES}}<figure class="t" id="m-summary"><figcaption>Type &amp; palette</figcaption>{{item:summary}}</figure></div>
+  <footer class="board-foot"><span>{{BRAND}} · {{CITY}}</span><span>{{TAG_LINE_1}} {{TAG_LINE_2}}</span></footer>
+</main>
+</body>
+</html>

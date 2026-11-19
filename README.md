@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <code>/brand-identity</code> · <code>/brand-kit</code> · <code>/moodboard</code> · <code>/logo</code>
+  <code>/brand-identity</code> · <code>/brand-kit</code> · <code>/moodboard</code> · <code>/logo</code> · <code>/merch-mockup</code>
 </p>
 
 ---
@@ -23,6 +23,7 @@
 | **`/brand-kit`** | You already have a name, logo or colours | Logo files, a moodboard, a **brand guidelines PDF** with the brand on your own products, packaging and signage, a cover image, `tokens.css` / `tokens.json` and a README |
 | **`/moodboard`** | A quick visual of the brand | A **7-tile moodboard** of the brand on the things your business really makes and uses, 3200 × 2000 PNG |
 | **`/logo`** | Logo files for a site, socials or print | Transparent PNGs (for dark and light backgrounds), the monogram, the mark, SVGs and a `favicon.ico` |
+| **`/merch-mockup`** | Seeing the brand on merch before you order it | Pick the pieces (tees, hoodies, caps, beanies, totes, mugs, bottles, notebooks, pins, stickers…), choose **code or an image generator** for photo-real, get a merch sheet, one image per piece and the print files |
 
 Everything is drawn in HTML, CSS and SVG and rendered with the Chrome you
 already have. **No image generator needed, no API keys, no watermarks** — every
@@ -70,15 +71,27 @@ brand should appear on**. You keep the list, add or remove items, or ask to
 
 <p align="center"><img src="docs/applications-menu.jpg" alt="A menu of applications drawn in Kiln's colours, starting with the summary card that every kit includes: storefront, shipping box, the product, seal sticker, shopping bag, clay close-up, class poster, business cards, studio tee, mug, letterhead and phone." width="100%" /></p>
 
-There are 17 drawn items — billboard, storefront, material close-up,
+There are 24 drawn items — billboard, storefront, material close-up,
 letterhead, business cards, box, shopping bag, hang tag, poster, t-shirt,
-bottle, takeaway cup, mug, seal sticker, phone, laptop — plus **your own
+bottle, takeaway cup, mug, seal sticker, phone, laptop, and the merch below — plus **your own
 product**, which Claude draws for each brand (Kiln's glaze-dipped cup and
 bowl, for example). Only two tiles never change: the logo and the summary
 card with the type and palette. The chosen items fill the moodboard and the
 brand book's **"In use"** pages:
 
 <p align="center"><img src="docs/in-use-pages.jpg" alt="Two In use pages from Kiln's brand book: the studio front, shipping box and shopping bag; and the product, a seal sticker and a clay close-up." width="100%" /></p>
+
+## Merch: `/merch-mockup`
+
+Claude gathers what the kit already made (the logo files, palette and type),
+asks **which merch** you want from a menu (apparel, headwear, bags,
+drinkware, desk and small things, or anything else you name), then asks
+**how to make it**: an image generator for photo-real people wearing and
+using it (recommended, when you have one connected) or code, like the rest
+of the kit. You get a sheet, one PNG per piece and the print files
+(transparent mark, wordmark and lockup, light and dark) with where each goes.
+
+<p align="center"><img src="docs/merch-sheet.jpg" alt="Kiln's merch sheet, drawn in code: a hoodie with the wordmark on the chest, the back print of a t-shirt, an embroidered cap, a canvas tote, a mug, a beanie with a woven label, a notebook, an enamel pin, and the type and palette card." width="100%" /></p>
 
 ## What the kit looks like
 
@@ -154,7 +167,7 @@ previous copy is kept in `~/.claude/skills-backup/<date>/`).
 Remove:
 
 ```bash
-rm -rf ~/.claude/skills/{brand-identity,brand-kit,moodboard,logo}
+rm -rf ~/.claude/skills/{brand-identity,brand-kit,moodboard,logo,merch-mockup}
 ```
 </details>
 
@@ -171,6 +184,7 @@ and how it should feel — then takes it from there.
 /brand-kit https://your-site.com
 /moodboard
 /logo
+/merch-mockup hoodie, cap and tote
 ```
 Inside a website project, the skills read your existing colours, fonts, logo
 and live site first, and only ask about what they can't find.
@@ -189,6 +203,8 @@ kiln-brand/
 ├── kiln-monogram.png / .svg
 ├── kiln-mark.png / .svg
 ├── favicon.ico
+├── merch-mockups.png            the merch sheet
+├── merch/                       one PNG per piece + print/ files
 ├── tokens.css / tokens.json
 ├── brand.json                   every value used, re-run any time
 └── *.html                       the editable sources
@@ -201,13 +217,14 @@ skills/
 ├── brand-identity/   the interview → strategy → direction → logo flow
 ├── brand-kit/
 │   ├── SKILL.md
-│   ├── templates/    moodboard · logo · brandbook · directions · concepts · strategy
-│   │   └── items/    17 drawn applications: box, bag, storefront, letterhead, product…
-│   ├── references/   which items suit which business, drawing the product, photo-real
+│   ├── templates/    moodboard · logo · brandbook · merch · directions · concepts · strategy
+│   │   └── items/    24 drawn applications: box, bag, storefront, product, hoodie, cap, tote…
+│   ├── references/   which items suit which business, the merch menu, photo-real
 │   ├── scripts/      fill.mjs · render.mjs · capture.mjs · palette.mjs
 │   └── examples/     Kiln: a complete run, from interview answers to brand.json
 ├── moodboard/        shortcut to brand-kit's moodboard
-└── logo/             shortcut to brand-kit's logo export
+├── logo/             shortcut to brand-kit's logo export
+└── merch-mockup/     shortcut to brand-kit's merch flow
 ```
 
 1. Claude gathers the brand into a `brand.json` (name, palette, fonts, the mark as SVG, the words).

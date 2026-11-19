@@ -5,7 +5,7 @@
 #   ./install.sh --project    install into this folder's project (./.claude/skills)
 #   ./install.sh --project /path/to/project
 #
-# Copies the four skills (brand-identity, brand-kit, moodboard, logo), keeps a
+# Copies the five skills (brand-identity, brand-kit, moodboard, logo, merch-mockup), keeps a
 # backup of any skill with the same name, and installs the one dependency
 # (playwright-core, which drives the Chrome you already have).
 set -euo pipefail
@@ -53,7 +53,7 @@ mkdir -p "$target"
 stamp="$(date +%Y%m%d-%H%M%S)"
 # backups go next to the skills folder, not inside it, so Claude doesn't load them twice
 backup="$(dirname "$target")/skills-backup/$stamp"
-for skill in brand-identity brand-kit moodboard logo; do
+for skill in brand-identity brand-kit moodboard logo merch-mockup; do
   if [[ -e "$target/$skill" ]]; then
     mkdir -p "$backup"
     mv "$target/$skill" "$backup/$skill"
@@ -73,4 +73,5 @@ say "  /brand-identity   ${dim}build a brand from scratch: questions → strateg
 say "  /brand-kit        ${dim}full kit for an existing brand${off}"
 say "  /moodboard        ${dim}the 7-tile moodboard${off}"
 say "  /logo             ${dim}logo files: PNG, SVG, favicon${off}"
+say "  /merch-mockup     ${dim}the brand on tees, hoodies, caps, totes, mugs…${off}"
 say ""

@@ -225,3 +225,79 @@
   /* ---------- a generated photo (image generator), with the real logo laid on top ---------- */
   .app-photo img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .app-photo .logo-on { position: absolute; color: var(--light); }
+
+  /* =====================================================================
+     MERCH (used by /merch-mockup, and anywhere else): garments are SVG
+     shapes in the brand's colours with the print laid on top in HTML, so
+     the real wordmark and mark are used. .g is the garment's box; the
+     print sits in % of it.
+     ===================================================================== */
+  .app .g { position: absolute; left: 50%; translate: -50% 0; container-type: inline-size; }
+  .app .g > svg:first-child { display: block; width: 100%; height: auto; overflow: visible; }
+
+  /* ---------- hoodie ---------- */
+  .app-hoodie .shadow { bottom: 6%; width: 70cqmin; height: 6cqmin; }
+  .app-hoodie .g { top: 8%; width: 80cqmin; filter: drop-shadow(0 24px 30px rgb(0 0 0 / 0.7)); }
+  .app-hoodie .cloth { fill: var(--base); }
+  .app-hoodie .cord { fill: none; stroke: var(--accent); stroke-width: 1.1; stroke-linecap: round; filter: drop-shadow(0 0 1.5px color-mix(in oklab, var(--accent) 80%, transparent)); }
+  .app-hoodie .print { position: absolute; left: 50%; top: 50%; translate: -50% -50%; color: var(--light); }
+  .app-hoodie .print .wm { font-size: 9cqw; }
+
+  /* ---------- tee, back print ---------- */
+  .app-teeback .g { top: 10%; width: 78cqmin; filter: drop-shadow(0 24px 30px rgb(0 0 0 / 0.7)); }
+  .app-teeback .cloth { fill: var(--base); }
+  .app-teeback .neck { position: absolute; left: 50%; top: 14%; width: 4.4cqw; translate: -50% 0; color: color-mix(in oklab, var(--light) 80%, transparent); }
+  .app-teeback .print { position: absolute; left: 50%; top: 30%; width: 46%; translate: -50% 0; display: grid; justify-items: center; gap: 3cqw; color: var(--light); text-align: center; }
+  .app-teeback .print .wm { font-size: 13cqw; }
+  .app-teeback .print small { font-family: var(--mono); font-size: 2.2cqw; letter-spacing: 0.34em; text-transform: uppercase; color: color-mix(in oklab, var(--light) 80%, transparent); white-space: nowrap; }
+
+  /* ---------- cap ---------- */
+  .app-cap .shadow { bottom: 18%; width: 74cqmin; height: 7cqmin; }
+  .app-cap .g { top: 22%; width: 84cqmin; filter: drop-shadow(0 20px 24px rgb(0 0 0 / 0.65)); }
+  .app-cap .cloth, .app-cap .brim { fill: var(--ink); }
+  .app-cap .edge { fill: none; stroke: var(--accent); stroke-width: 0.9; stroke-linecap: round; opacity: 0.9; }
+  .app-cap .btn { fill: var(--accent); }
+  .app-cap .emb { position: absolute; left: 39%; top: 24%; width: 17cqw; rotate: -4deg; color: var(--light); filter: drop-shadow(0 1px 0 rgb(0 0 0 / 0.6)); }
+
+  /* ---------- beanie (ribbed knit) ---------- */
+  .app-beanie .shadow { bottom: 15%; width: 64cqmin; height: 6cqmin; }
+  .app-beanie .g { top: 16%; width: 58cqmin; aspect-ratio: 1 / 1.05; filter: drop-shadow(0 22px 26px rgb(0 0 0 / 0.65)); }
+  .app-beanie .crown, .app-beanie .cuff { position: absolute; left: 0; right: 0; background-color: var(--base); }
+  .app-beanie .crown { top: 0; height: 66%; border-radius: 50% 50% 6% 6% / 70% 70% 6% 6%; background-image: repeating-linear-gradient(90deg, rgb(0 0 0 / 0.22) 0 1.2cqw, rgb(255 255 255 / 0.05) 1.2cqw 2.6cqw), linear-gradient(90deg, rgb(0 0 0 / 0.45), transparent 30%, rgb(255 255 255 / 0.08) 45%, transparent 65%, rgb(0 0 0 / 0.5)); }
+  .app-beanie .crown::before { content: ""; position: absolute; left: 50%; top: -4%; width: 10%; aspect-ratio: 1; translate: -50% 0; border-radius: 50%; background: var(--base); box-shadow: inset -2px -2px 4px rgb(0 0 0 / 0.4); }
+  .app-beanie .cuff { left: -3%; right: -3%; top: 60%; height: 36%; border-radius: 4cqw; background-image: repeating-linear-gradient(90deg, rgb(0 0 0 / 0.26) 0 1.4cqw, rgb(255 255 255 / 0.06) 1.4cqw 3cqw), linear-gradient(90deg, rgb(0 0 0 / 0.5), transparent 28%, rgb(255 255 255 / 0.06) 45%, transparent 65%, rgb(0 0 0 / 0.55)); box-shadow: 0 -0.6cqw 1.4cqw rgb(0 0 0 / 0.45); }
+  .app-beanie .label { position: absolute; left: 50%; top: 50%; translate: -50% -50%; display: inline-flex; align-items: center; gap: 2cqw; padding: 2.2cqw 4cqw; border-radius: 0.8cqw; background: var(--light); color: var(--ink); box-shadow: 0 0.6cqw 1.2cqw rgb(0 0 0 / 0.35), inset 0 0 0 0.4cqw color-mix(in oklab, var(--ink) 10%, transparent); }
+  .app-beanie .label svg { width: 7cqw; } .app-beanie .label .wm { font-size: 6.4cqw; }
+  .app-beanie .label .wm .acc { color: var(--accent-deep); }
+
+  /* ---------- canvas tote ---------- */
+  .app-tote .shadow { bottom: 6%; width: 60cqmin; height: 5cqmin; }
+  .app-tote .g { top: 8%; width: 56cqmin; height: 84cqmin; }
+  .app-tote .canvas { position: absolute; left: 0; right: 0; bottom: 0; height: 64%; border-radius: 0.6cqw; background: radial-gradient(1px 1px at 2px 2px, rgb(0 0 0 / 0.1) 99%, transparent) 0 0 / 4px 4px, linear-gradient(90deg, #b9ad97, #e6dcc8 20%, #efe6d4 55%, #d9ceb7 85%, #a99d87); box-shadow: 0 24px 30px -14px rgb(0 0 0 / 0.75); display: grid; place-content: center; justify-items: center; gap: 3cqw; color: var(--ink); }
+  .app-tote .canvas::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 7%; background: linear-gradient(rgb(0 0 0 / 0.16), transparent); }
+  .app-tote .canvas svg { width: 22cqw; } .app-tote .canvas .wm { font-size: 13cqw; }
+  .app-tote .canvas .wm .acc { color: var(--accent-deep); }
+  .app-tote .canvas small { font-family: var(--mono); font-size: 2.6cqw; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.75; white-space: nowrap; }
+  .app-tote .handle { position: absolute; top: 0; width: 26%; height: 50%; border: 2.6cqw solid #d8ccb4; border-bottom: 0; border-radius: 50% 50% 0 0 / 70% 70% 0 0; box-shadow: inset 0 0.4cqw 0 rgb(255 255 255 / 0.25); }
+  .app-tote .handle.l { left: 18%; } .app-tote .handle.r { right: 18%; }
+
+  /* ---------- hardback notebook + pen ---------- */
+  .app-notebook { background: radial-gradient(60% 50% at 40% 30%, rgb(255 255 255 / 0.1), transparent 70%), linear-gradient(150deg, #2a2a2a, #121212); }
+  .app-notebook .desk { position: absolute; inset: 0; background: repeating-linear-gradient(98deg, rgb(255 255 255 / 0.015) 0 2px, transparent 2px 14px); }
+  .app-notebook .book { position: absolute; left: 50%; top: 50%; width: min(56cqw, 52cqh); aspect-ratio: 148 / 210; translate: -52% -50%; rotate: -8deg; container-type: inline-size; }
+  .app-notebook .pages { position: absolute; inset: 1.5% -2% -1.5% 1.5%; border-radius: 0 2cqw 2cqw 0; background: repeating-linear-gradient(0deg, #e9e4da 0 1px, #f7f3ec 1px 3px); box-shadow: 0 30px 40px -16px rgb(0 0 0 / 0.85); }
+  .app-notebook .cover { position: absolute; inset: 0; border-radius: 1cqw 3cqw 3cqw 1cqw; background: linear-gradient(90deg, rgb(0 0 0 / 0.35) 0 4%, rgb(255 255 255 / 0.06) 4% 5%, transparent 5%), radial-gradient(80% 60% at 30% 20%, rgb(255 255 255 / 0.1), transparent 70%), var(--base); display: grid; place-content: center; justify-items: center; gap: 6cqw; color: color-mix(in oklab, var(--base) 70%, #000); }
+  .app-notebook .cover svg { width: 30cqw; filter: drop-shadow(0 -1px 0 rgb(0 0 0 / 0.5)) drop-shadow(0 1px 0 rgb(255 255 255 / 0.18)); }
+  .app-notebook .cover .wm { font-size: 12cqw; color: var(--light); opacity: 0.9; }
+  .app-notebook .band { position: absolute; right: 12%; top: -1%; bottom: -1%; width: 3cqw; background: linear-gradient(90deg, color-mix(in oklab, var(--accent) 70%, #000), var(--accent) 50%, color-mix(in oklab, var(--accent) 70%, #000)); box-shadow: 0 0 1.2cqw color-mix(in oklab, var(--accent) 60%, transparent); }
+  .app-notebook .pen { position: absolute; right: 9%; top: 18%; width: 3cqmin; height: 62cqmin; rotate: 14deg; border-radius: 2cqmin 2cqmin 0.6cqmin 0.6cqmin; background: linear-gradient(90deg, #0d0d0d, #3a3a3a 40%, #111); box-shadow: 0 20px 20px -8px rgb(0 0 0 / 0.7); }
+  .app-notebook .pen::after { content: ""; position: absolute; left: 50%; top: 8%; width: 30%; height: 26%; translate: -50% 0; border-radius: 1cqmin; background: var(--accent); }
+
+  /* ---------- enamel pin on a backing card ---------- */
+  .app-pin { background: radial-gradient(60% 50% at 50% 30%, rgb(255 255 255 / 0.12), transparent 70%), linear-gradient(160deg, #2a2a2a, #111); }
+  .app-pin .card { position: absolute; left: 50%; top: 50%; width: min(56cqw, 46cqh); aspect-ratio: 0.7; translate: -50% -50%; rotate: 4deg; border-radius: 2cqmin; background: var(--light); color: var(--ink); box-shadow: 0 30px 44px -16px rgb(0 0 0 / 0.85); display: flex; flex-direction: column; align-items: center; padding-top: 22%; container-type: inline-size; }
+  .app-pin .hole { position: absolute; left: 50%; top: 5%; width: 18%; height: 5%; translate: -50% 0; border-radius: 99px; background: #1a1a1a; box-shadow: inset 0 2px 3px rgb(0 0 0 / 0.7); }
+  .app-pin .badge { width: 54cqw; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; color: var(--light); background: radial-gradient(70% 70% at 35% 30%, color-mix(in oklab, var(--base) 75%, #fff 20%), var(--base) 60%, color-mix(in oklab, var(--base) 70%, #000)); box-shadow: 0 0 0 2.4cqw #c9b98f, 0 0 0 3cqw #8a7a52, 0 2.4cqw 3cqw 2cqw rgb(0 0 0 / 0.35), inset 0 0.8cqw 1cqw rgb(255 255 255 / 0.25); }
+  .app-pin .badge svg { width: 56%; filter: drop-shadow(0 0.4cqw 0 rgb(0 0 0 / 0.35)); }
+  .app-pin p { margin-top: 13cqw; font-weight: 700; font-size: 9cqw; letter-spacing: 0.04em; }
+  .app-pin small { margin-top: 3cqw; font-family: var(--mono); font-size: 3.4cqw; letter-spacing: 0.24em; text-transform: uppercase; color: color-mix(in oklab, var(--ink) 65%, transparent); }

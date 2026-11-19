@@ -1,12 +1,12 @@
 ---
 name: brand-kit
-description: "Coded brand kits, no image generation: a 7-tile brand moodboard (/moodboard), the logo as transparent PNG + SVG files (/logo), or the full kit (/brand-kit) = logo files + moodboard + a 10-page brand guidelines PDF + design tokens. Built in HTML/CSS/SVG and rendered with the local Chrome, in one look: near-black backdrop, rounded tiles, one loud accent that glows. Use when someone types /brand-kit, /moodboard or /logo, or asks for a moodboard, logo files, brand guidelines or a brand kit for a brand that already exists. For a brand that doesn't exist yet, use /brand-identity."
+description: "Brand kits drawn in code, photo-real when an image generator is connected: a 7-tile brand moodboard (/moodboard), the logo as transparent PNG + SVG files (/logo), or the full kit (/brand-kit) = logo files + moodboard + a 10-page brand guidelines PDF + design tokens, and merch mockups (/merch-mockup). Built in HTML/CSS/SVG and rendered with the local Chrome, in one look: near-black backdrop, rounded tiles, one loud accent that glows. Use when someone types /brand-kit, /moodboard, /logo or /merch-mockup, or asks for a moodboard, logo files, brand guidelines or a brand kit for a brand that already exists. For a brand that doesn't exist yet, use /brand-identity."
 argument-hint: "[brand or project, folder, site URL, palette or notes]"
 ---
 
 # brand-kit
 
-Three outputs, one look, after a sportswear brand board. `examples/kiln/` is a
+Four outputs, one look, after a sportswear brand board. `examples/kiln/` is a
 complete kit for a fictional ceramics studio made with these skills — its
 `brand.json`, moodboard, brand book pages and logo files; open
 `examples/kiln/moodboard.jpg` to see the target quality before starting.
@@ -16,18 +16,20 @@ complete kit for a fictional ceramics studio made with these skills — its
 | `/moodboard` | `moodboard.png` (3200 × 2000) + `moodboard.jpg` + `moodboard.html` |
 | `/logo` | transparent PNGs: wordmark for dark backgrounds, wordmark for light backgrounds, monogram tile, mark alone; SVGs of the mark and monogram; `favicon.ico`; `logo.html` |
 | `/brand-kit` | everything from `/logo` and `/moodboard`, plus `<slug>-brand-guidelines.pdf` (10 pages + "In use" pages of the brand on the business's products, packaging, signage and stationery), a cover PNG, `tokens.css`, `tokens.json` and a `README.md` listing the files |
+| `/merch-mockup` | the brand on the merch the person picks (tees, hoodies, caps, totes, mugs…): `merch-mockups.png` sheet, one PNG per piece in `merch/`, the print files in `merch/print/` — coded, or photo-real with a connected image generator |
 | `/brand-identity` | (its own skill) interviews the person, writes the strategy, lets them pick a direction and a logo, then runs this skill |
 
 Everything is drawn in HTML/CSS/SVG and rendered locally, so every output is
-the person's to use. If they want photo-real mockups, say that needs an image
-generator and stop there unless they ask.
+the person's to use. Photo-real mockups need an image generator: offer it
+where this file says to, and never spend credits without asking.
 
 ## Files in this skill
 
 `SKILL_DIR` below is the folder this file is in (usually `~/.claude/skills/brand-kit`).
 
 - `templates/moodboard.html` · `logo.html` · `brandbook.html` — the three kit outputs
-- `templates/items/*.html` — 17 drawn applications (box, bag, storefront, letterhead, product…) used in moodboard slots and the brand book's "In use" pages; `templates/items-gallery.html` shows any set of them as a menu
+- `templates/items/*.html` — 24 drawn applications (box, bag, storefront, letterhead, product, hoodie, cap, tote…) used in moodboard slots and the brand book's "In use" pages; `templates/items-gallery.html` shows any set of them as a menu
+- `templates/merch.html` — the merch sheet for /merch-mockup; `references/merch.md` — the merch menu, what to suggest, colourways and photo-real scenes
 - `references/applications.md` — the item list, which items suit which business, how to draw the product, and the image-generator option
 - `templates/directions.html` · `concepts.html` · `strategy.html` — used by brand-identity
 - `scripts/fill.mjs <template> <brand.json> <out.html>` — fills `{{PLACEHOLDERS}}`, fails if any are left
@@ -139,6 +141,64 @@ makes, sells and uses** — read `references/applications.md` now.
 4. Write `tokens.css` and `tokens.json` (colours, fonts, radii 14/22/28, the glow) and a `README.md` listing every file.
 5. Check the pages: render `--scale 1 --shot ".page:nth-of-type(N)=page-N.jpg"` for each and look; fix overflow (long names can overrun the big headings), re-render.
 6. Send the PDF, the moodboard and the folder path. Name anything that is a proposal, a placeholder or a stylised drawing.
+
+## /merch-mockup
+
+The brand on merch. Read `references/merch.md` first.
+
+1. **Gather the brand assets.** Look for a kit this skill already made: the
+   project's `brand/` folder or `<slug>-brand-kit/` (its `brand.json`, the
+   logo PNGs/SVGs, `tokens.css`). Tell the person in one line what you found
+   ("Using kiln-brand: the mark, the wordmark, Clay/Bisque/Char/Ember, Space
+   Grotesk"). If there is no kit, do "Step 1 · Gather the brand" (or suggest
+   `/brand-identity` when there is no brand yet). Write into
+   `<kit folder>/merch/` (a dated subfolder if one exists already).
+2. **Ask what merch** (`AskUserQuestion`, `multiSelect`, before drawing
+   anything). Suggest first what suits the business (`references/merch.md` →
+   "Which ones to suggest first"), and mark those "(Suggested)". Up to four
+   questions of up to four options each, by group:
+   *Apparel* (t-shirt chest · t-shirt back print · hoodie · cap/beanie),
+   *Bags & drinkware* (canvas tote · mug · water bottle · takeaway cup),
+   *Desk & small things* (notebook · enamel pin · stickers · hang tag/pass),
+   and a last one: *Show me all of them drawn first · No, that's the list*.
+   "Other" takes anything else (socks, an apron…: draw or generate it).
+   "Show me all drawn": fill `templates/items-gallery.html` with every merch
+   item, render, send it, ask again.
+3. **Code or image generator?** Always ask before generating
+   (`AskUserQuestion`):
+   *Image generator — photo-real (Recommended)* — real people wearing the
+   hoodie, a cap on a head, a tote on a shoulder; better to judge the merch
+   by; each image spends that tool's credits ·
+   *Code — stylised, like the rest of the kit (free, instant)*.
+   Look for an image tool in this session first (an MCP tool such as
+   `generate_image`, or a skill such as Higgsfield's) and name it in the
+   option. If there is none and they pick the generator, say how to connect
+   one (an image-generation MCP server or skill, then start a new session) and
+   offer to make the coded sheet meanwhile. Check the tool's licence allows
+   commercial use and say so.
+4. **Make it.**
+   - *Coded:* in a copy of `brand.json` set `MERCH_NOTE` ("Coded mockups ·
+     stylised") and `MERCH_TILES`, one tile per piece in the order chosen:
+     `<figure class="t" id="m-hoodie"><figcaption>Hoodie</figcaption>{{item:hoodie}}<p class="spec">Heavyweight hoodie · Clay · chest print</p></figure>`.
+     The summary card (type & palette) closes the sheet by itself — it is
+     always there. Fill `templates/merch.html`.
+   - *Photo-real:* follow "Photo-real merch" in `references/merch.md`: render
+     the overlays, generate each scene blank, composite the real print,
+     look at each; then the tile is
+     `<figure class="t" id="m-hoodie"><figcaption>Hoodie</figcaption><div class="app app-photo"><img class="bg" src="merch/photo-hoodie.jpg" alt="" /></div><p class="spec">…</p></figure>`
+     and `MERCH_NOTE` names the tool ("Photographs made with …").
+     Mixing is fine (photo for worn pieces, code for a pin).
+5. **Render** the sheet and every piece:
+   `render.mjs merch.html --scale 2 --shot "#board=merch-mockups.png" --shot "#board=merch-mockups.jpg" --shot "#m-hoodie=merch/hoodie.png" …`
+6. **Print files** in `merch/print/`: fill and render `templates/overlays.html`
+   (transparent mark, wordmark, lockup, tag lines, light and dark ink, at
+   `--scale 4`) and copy the SVG mark/monogram. Name which file goes on which
+   piece in `merch/README.md` (e.g. hoodie chest → `ov-wordmark-light.png`,
+   about 25 cm wide; cap front → `<slug>-mark.svg`, 6 cm, embroidery).
+7. **Look** at the sheet (Read it): every piece whole and recognisable, the
+   print centred and readable, nothing clipped, no stray letters in photos.
+   Fix and re-render. Then send the sheet, list the files, and say which
+   pieces are stylised drawings or generated photos.
 
 ## House style
 
