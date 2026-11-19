@@ -29,3 +29,5 @@
 ## Choices
 - **Visual direction:** A · Fired earth (Clay, Bisque, Char, Ember · Space Grotesk + Fraunces)
 - **Logo:** concept 3 · the kiln's arched door with the fire inside, beside the lowercase wordmark
+- **Applications (proposed by Claude, kept as is):** moodboard — storefront · shipping box · the product (a glaze-dipped cup and bowl) · seal sticker · shopping bag; in use — clay close-up · class poster · business cards · studio tee
+- **Mockups:** coded and stylised (no image generator connected)

@@ -10,8 +10,8 @@ From "I have an idea" to a finished identity, in five stages. The person
 makes every real decision; Claude asks, proposes, renders, and builds.
 
 ```
-1 Interview → 2 Strategy → 3 Visual direction → 4 Logo → 5 The kit
-  questions    brief, ok?    pick 1 of 3          pick 1 of 4   brand-kit
+1 Interview → 2 Strategy → 3 Visual direction → 4 Logo → 5 Applications → the kit
+  questions    brief, ok?    pick 1 of 3          pick 1 of 4   what it appears on
 ```
 
 Everything is drawn in HTML/CSS/SVG and rendered with the local Chrome by the
@@ -129,13 +129,19 @@ anything. One refinement round, then lock it.
    book words from the approved strategy (positioning, values, voice).
 2. Fill `templates/strategy.html` from `brand-strategy.md` and render
    `<slug>-brand-strategy.pdf` (5 pages).
-3. Run the full **/brand-kit** flow from `brand-kit/SKILL.md` in the same
-   folder: logo files, moodboard (no live site yet → keep the drawn phone
-   screen; pick the close-up material and object that suit the business),
-   brand guidelines PDF, cover, tokens, README.
-4. Check every rendered image before sending (overlaps, clipped words,
+3. **Applications** — do brand-kit's "Step 2 · Applications": propose what
+   the brand appears on from the business (the product itself first, its
+   packaging, bag, shop, signage, stationery, uniform…) using the answers to
+   "where will the brand be seen most"; the person keeps, removes or adds
+   items, or asks for the visual menu; then ask coded vs photo-real if an
+   image tool is connected. Nothing is drawn until the list is agreed.
+4. Run the full **/brand-kit** flow from `brand-kit/SKILL.md` in the same
+   folder: logo files, moodboard (slots from the agreed list; no live site
+   yet → the drawn phone/laptop screens), brand guidelines PDF with its "In
+   use" pages, cover, tokens, README.
+5. Check every rendered image before sending (overlaps, clipped words,
    contrast). Then send the strategy PDF, the guidelines PDF and the
    moodboard, and list the folder's files.
-5. End with what is still the person's to do: check the name's domain and
+6. End with what is still the person's to do: check the name's domain and
    trademark, licence any paid font they chose to swap in, and real photos
    when they have them.

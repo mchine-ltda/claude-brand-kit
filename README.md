@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/moodboard.jpg" alt="A brand moodboard made with Claude Brand Kit for Kiln, a fictional ceramics studio: logo tile, billboard, wordmark pressed into clay, hang tag, phone, mug and a type and palette card, in clay brown, bisque and ember orange." width="100%" />
+  <img src="docs/moodboard.jpg" alt="A brand moodboard made with Claude Brand Kit for Kiln, a fictional ceramics studio: the logo, the studio front, a shipping box, the glaze-dipped cup and bowl, a seal sticker, a shopping bag, and the type and palette card, in clay brown, bisque and ember orange." width="100%" />
 </p>
 
 <h1 align="center">Claude Brand Kit</h1>
@@ -20,13 +20,14 @@
 | Command | For | You get |
 |---|---|---|
 | **`/brand-identity`** | You have an idea, but no brand yet | Claude interviews you about your vision, goals, audience and personality, writes the strategy, shows you **3 visual directions** and **4 logo concepts** to choose from, then builds the whole kit below |
-| **`/brand-kit`** | You already have a name, logo or colours | Logo files, a moodboard, a **10-page brand guidelines PDF**, a cover image, `tokens.css` / `tokens.json` and a README |
-| **`/moodboard`** | A quick visual of the brand | A **7-tile moodboard**, 3200 × 2000 PNG |
+| **`/brand-kit`** | You already have a name, logo or colours | Logo files, a moodboard, a **brand guidelines PDF** with the brand on your own products, packaging and signage, a cover image, `tokens.css` / `tokens.json` and a README |
+| **`/moodboard`** | A quick visual of the brand | A **7-tile moodboard** of the brand on the things your business really makes and uses, 3200 × 2000 PNG |
 | **`/logo`** | Logo files for a site, socials or print | Transparent PNGs (for dark and light backgrounds), the monogram, the mark, SVGs and a `favicon.ico` |
 
 Everything is drawn in HTML, CSS and SVG and rendered with the Chrome you
-already have. **No image generator, no API keys, no watermarks** — every file it
-makes is yours.
+already have. **No image generator needed, no API keys, no watermarks** — every
+file it makes is yours. If you have an image generator connected to Claude,
+you can choose photo-real product shots instead.
 
 ## How `/brand-identity` works
 
@@ -35,7 +36,8 @@ flowchart LR
   A["1 · Interview<br/><small>3–4 short rounds of questions</small>"] --> B["2 · Strategy<br/><small>purpose, audience, positioning,<br/>voice — you approve it</small>"]
   B --> C["3 · Direction<br/><small>pick 1 of 3 visual directions</small>"]
   C --> D["4 · Logo<br/><small>pick 1 of 4 concepts,<br/>refine once</small>"]
-  D --> E["5 · The kit<br/><small>logo files, moodboard,<br/>strategy + guidelines PDFs, tokens</small>"]
+  D --> E["5 · Applications<br/><small>what the brand appears on:<br/>your product, packaging, shop…</small>"]
+  E --> F["The kit<br/><small>logo files, moodboard,<br/>strategy + guidelines PDFs, tokens</small>"]
 ```
 
 Claude asks before it decides. Each round is a handful of multiple-choice
@@ -57,6 +59,27 @@ the whole kit are in [`skills/brand-kit/examples/kiln`](skills/brand-kit/example
   </tr>
 </table>
 
+## Built around what you sell
+
+A shoe brand needs the shoe, the box, the bag, the store and the letterhead.
+A café needs the cup, the apron and the shop front. An agency needs its site
+and a billboard. So before anything is drawn, Claude works out what the
+business makes and where customers meet it, and **proposes the items the
+brand should appear on**. You keep the list, add or remove items, or ask to
+**see the options** drawn in your colours:
+
+<p align="center"><img src="docs/applications-menu.jpg" alt="A menu of twelve applications drawn in Kiln's colours: storefront, shipping box, the product, seal sticker, shopping bag, clay close-up, class poster, business cards, studio tee, mug, letterhead and phone." width="100%" /></p>
+
+There are 17 drawn items — billboard, storefront, material close-up,
+letterhead, business cards, box, shopping bag, hang tag, poster, t-shirt,
+bottle, takeaway cup, mug, seal sticker, phone, laptop — plus **your own
+product**, which Claude draws for each brand (Kiln's glaze-dipped cup and
+bowl, for example). Only two tiles never change: the logo and the summary
+card with the type and palette. The chosen items fill the moodboard and the
+brand book's **"In use"** pages:
+
+<p align="center"><img src="docs/in-use-pages.jpg" alt="Two In use pages from Kiln's brand book: the studio front, shipping box and shopping bag; and the product, a seal sticker and a clay close-up." width="100%" /></p>
+
 ## What the kit looks like
 
 <p align="center"><img src="docs/strategy-pages.jpg" alt="Four pages of the brand strategy PDF: why, who it's for, position, and voice and messages." width="100%" /></p>
@@ -70,7 +93,7 @@ the whole kit are in [`skills/brand-kit/examples/kiln`](skills/brand-kit/example
 The brand guidelines cover: the brand and its values · logo · logo use (clear
 space, minimum sizes, six don'ts) · colour with **measured WCAG contrast** ·
 typography · graphic language · voice ("say it like this / not like this") ·
-applications · files and tokens.
+applications · in use (your products, packaging, signage, stationery) · files and tokens.
 
 ## Install
 
@@ -179,6 +202,8 @@ skills/
 ├── brand-kit/
 │   ├── SKILL.md
 │   ├── templates/    moodboard · logo · brandbook · directions · concepts · strategy
+│   │   └── items/    17 drawn applications: box, bag, storefront, letterhead, product…
+│   ├── references/   which items suit which business, drawing the product, photo-real
 │   ├── scripts/      fill.mjs · render.mjs · capture.mjs · palette.mjs
 │   └── examples/     Kiln: a complete run, from interview answers to brand.json
 ├── moodboard/        shortcut to brand-kit's moodboard
@@ -202,16 +227,19 @@ own.
 
 ## FAQ
 
-**Does it use AI image generation?** No. Every mockup — the billboard, the hang
-tag, the phone, the mug — is drawn in CSS and SVG. That's why the files are
-yours, and why it needs no account or API key.
+**Does it use AI image generation?** Not unless you want it to. By default every
+mockup — the box, the bag, the storefront, the product — is drawn in CSS and
+SVG, so the files are yours and it needs no account or API key. If you have
+an image generator connected to Claude, it asks whether you'd like photo-real
+product and packaging shots instead; the real logo is laid on top in code,
+because generators garble lettering.
 
 **What about fonts?** It defaults to free Google Fonts (SIL Open Font Licence).
 If you use a paid font, put the licensed files in the kit's `assets/` folder;
 they are never bundled or shared.
 
-**Can I get photo-real mockups?** Not from this kit. Use the moodboard and
-logo files as the brief for a photographer or an image tool.
+**My product isn't in the list.** Claude draws it for your brand — a simple,
+bold illustration in your colours, with your logo where it would really sit.
 
 **Does it make up facts about my business?** It's told not to: no invented
 clients, numbers, reviews or history. The strategy states intentions, and

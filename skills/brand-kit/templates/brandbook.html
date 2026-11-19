@@ -42,6 +42,9 @@
     break-after: page;
   }
   .page:last-child { break-after: auto; }
+  body { counter-reset: pg; }
+  .page { counter-increment: pg; }
+  .pn::after { content: counter(pg, decimal-leading-zero); }
   .head { display: flex; justify-content: space-between; align-items: baseline; }
   .mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); }
   .foot { display: flex; justify-content: space-between; }
@@ -151,6 +154,15 @@
   /* applications */
   .apps img { width: 100%; height: 100%; object-fit: cover; border-radius: 22px; box-shadow: inset 0 0 0 1px var(--line); }
 
+  /* in use */
+  .inuse .grid3, .inuse .grid2 { display: grid; gap: 14px; min-height: 0; }
+  .inuse .grid3 { grid-template-columns: 1.55fr 1fr; grid-template-rows: 1fr 1fr; }
+  .inuse .grid3 > .t:first-child { grid-row: span 2; }
+  .inuse .grid2 { grid-template-columns: 1fr 1fr; }
+  .inuse .t { position: relative; overflow: hidden; isolation: isolate; border-radius: 22px; box-shadow: inset 0 0 0 1px var(--line); background: #151515; }
+  .inuse .t figcaption { position: absolute; z-index: 5; left: 18px; top: 16px; padding: 6px 12px; border-radius: 999px; background: rgb(11 11 12 / 0.7); backdrop-filter: blur(6px); font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #ecebe6; }
+{{>items.css}}
+
   /* assets */
   .files { grid-template-columns: 1fr 1fr; align-items: start; }
   .files .tile { padding: 30px 34px; }
@@ -199,10 +211,11 @@
       <li>Graphic language <span>07</span></li>
       <li>Voice <span>08</span></li>
       <li>Applications <span>09</span></li>
-      <li>Files and tokens <span>10</span></li>
+      <li>In use <span>10</span></li>
+      <li>Files and tokens <span>{{TOC_FILES}}</span></li>
     </ol>
   </div>
-  <div class="foot"><span class="mono">{{AUDIENCE}}</span><span class="mono">02</span></div>
+  <div class="foot"><span class="mono">{{AUDIENCE}}</span><span class="mono pn"></span></div>
 </section>
 
 <!-- 3 · LOGO -->
@@ -213,7 +226,7 @@
     <div class="tile chalk on-light"><span class="wm">{{WORDMARK_HTML}}</span><span class="mono cap">On light · {{LIGHT_NAME}}</span></div>
     <div class="tile mono-tile"><svg viewBox="0 0 32 32" style="color:var(--light)"><rect width="32" height="32" rx="8" fill="var(--base)" /><use href="#mark" /></svg><span class="mono cap">Monogram · icons, avatars, favicon</span></div>
   </div>
-  <div class="foot"><span class="mono">{{LOGO_NOTE}}</span><span class="mono">03</span></div>
+  <div class="foot"><span class="mono">{{LOGO_NOTE}}</span><span class="mono pn"></span></div>
 </section>
 
 <!-- 4 · LOGO USE -->
@@ -242,7 +255,7 @@
       </div>
     </div>
   </div>
-  <div class="foot"><span class="mono">Always use the supplied files · never retype the logo</span><span class="mono">04</span></div>
+  <div class="foot"><span class="mono">Always use the supplied files · never retype the logo</span><span class="mono pn"></span></div>
 </section>
 
 <!-- 5 · COLOUR -->
@@ -261,7 +274,7 @@
       <div class="pairs">{{CONTRAST_PAIRS}}</div>
     </div>
   </div>
-  <div class="foot"><span class="mono">Contrast: WCAG 2.1 ratios, measured</span><span class="mono">05</span></div>
+  <div class="foot"><span class="mono">Contrast: WCAG 2.1 ratios, measured</span><span class="mono pn"></span></div>
 </section>
 
 <!-- 6 · TYPOGRAPHY -->
@@ -283,7 +296,7 @@
       </div>
     </div>
   </div>
-  <div class="foot"><span class="mono">{{FONT_LICENCE_NOTE}}</span><span class="mono">06</span></div>
+  <div class="foot"><span class="mono">{{FONT_LICENCE_NOTE}}</span><span class="mono pn"></span></div>
 </section>
 
 <!-- 7 · GRAPHIC LANGUAGE -->
@@ -297,7 +310,7 @@
     <div class="tile"><span class="mono">Hairlines + labels</span><div class="demo"><div class="hair"><span style="width:90%"></span><span style="width:66%"></span><span style="width:78%"></span></div></div><p>{{GL_HAIR}}</p></div>
     <div class="tile"><span class="mono">Pills</span><div class="demo" style="display:flex;gap:10px;justify-content:center"><span class="pill">{{PILL_1}}</span><span class="pill on">{{PILL_2}}</span></div><p>{{GL_PILLS}}</p></div>
   </div>
-  <div class="foot"><span class="mono">Simple, never plain: few elements, each with a job</span><span class="mono">07</span></div>
+  <div class="foot"><span class="mono">Simple, never plain: few elements, each with a job</span><span class="mono pn"></span></div>
 </section>
 
 <!-- 8 · VOICE -->
@@ -307,24 +320,31 @@
     <div class="tile glow do"><h3>Say it like this</h3><ul>{{VOICE_DO}}</ul></div>
     <div class="tile dont-say"><h3>Not like this</h3><ul>{{VOICE_DONT}}</ul></div>
   </div>
-  <div class="foot"><span class="mono">Headlines name who it's for and the outcome · no slogans</span><span class="mono">08</span></div>
+  <div class="foot"><span class="mono">Headlines name who it's for and the outcome · no slogans</span><span class="mono pn"></span></div>
 </section>
 
 <!-- 9 · APPLICATIONS -->
 <section class="page apps">
   <div class="head"><span class="mono">08 · Applications</span><span class="mono">{{BRAND_UPPER}}</span></div>
   <img src="{{MOODBOARD_SRC}}" alt="" />
-  <div class="foot"><span class="mono">Moodboard · {{DATE}}</span><span class="mono">09</span></div>
+  <div class="foot"><span class="mono">Moodboard · {{DATE}}</span><span class="mono pn"></span></div>
 </section>
 
-<!-- 10 · FILES + TOKENS -->
+<!-- 10… · IN USE: one or more pages of the business's own applications, large.
+     IN_USE_PAGES is a run of sections like this (a big tile + two, or two side by side):
+     section class "page inuse" > head "08 · In use" > div "grid3" (or "grid2") holding
+     figure class "t" tiles, each a figcaption and an item tag, e.g. item:box > foot with
+     a mono note and the span class "mono pn" page number. -->
+{{IN_USE_PAGES}}
+
+<!-- FILES + TOKENS -->
 <section class="page">
   <div class="head"><span class="mono">09 · Files and tokens</span><span class="mono">{{BRAND_UPPER}}</span></div>
   <div class="grid files">
     <div class="tile"><h3>In this kit</h3><ul>{{FILE_LIST}}</ul></div>
     <div class="tile glow"><h3>Design tokens</h3><pre>{{TOKENS_CSS}}</pre></div>
   </div>
-  <div class="foot"><span class="mono">{{CONTACT_LINE}}</span><span class="mono">10</span></div>
+  <div class="foot"><span class="mono">{{CONTACT_LINE}}</span><span class="mono pn"></span></div>
 </section>
 </body>
 </html>
