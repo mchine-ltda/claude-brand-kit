@@ -31,7 +31,8 @@ file it makes is yours.
 
 > [!NOTE]
 > **Every image and asset on this page was made purely in code**, with no image
-> generator. **The skills are 100% free** if you stay with the coded assets.
+> generator, except the one photo-real example in the Merch section (marked).
+> **The skills are 100% free** if you stay with the coded assets.
 > Connecting an image generator is **optional, but recommended for better
 > results**: mockups become photo-real (the mark embroidered on a real hoodie,
 > debossed in a mug, a billboard in a real street). Claude gives the generator
@@ -112,6 +113,16 @@ of the kit. You get a sheet, one PNG per piece and the print files
 (transparent mark, wordmark and lockup, light and dark) with where each goes.
 
 <p align="center"><img src="docs/merch-sheet.jpg" alt="Kiln's merch sheet, drawn in code: a hoodie with the wordmark on the chest, the back print of a t-shirt, an embroidered cap, a canvas tote, a mug, a beanie with a woven label, a notebook, an enamel pin, and the type and palette card." width="100%" /></p>
+<p align="center"><sub>Coded · free</sub></p>
+
+### The same merch, photo-real
+
+With an image generator connected, Claude sends the real Kiln mark as a
+reference image, so the generator embroiders, prints and debosses the actual
+logo instead of inventing one, then checks every image against the real file.
+
+<p align="center"><img src="docs/merch-sheet-photo.jpg" alt="Kiln's merch sheet made photo-real with an image generator: a clay-brown hoodie with the arch mark embroidered in cream and an ember dot, a natural canvas tote with the mark screen printed, a stoneware mug with the mark debossed into the clay and an ember glaze inside, and the type and palette card." width="100%" /></p>
+<p align="center"><sub>Photo-real · made with Higgsfield (Seedream 5.0 Flash) on a free plan: 5 images for 3 pieces, 2.5 credits. The tote and mug matched on the first try; the hoodie took 3, which is why Claude warns about retries.</sub></p>
 
 ## What the kit looks like
 
