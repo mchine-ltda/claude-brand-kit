@@ -44,6 +44,11 @@ if [[ -z "$chrome" ]]; then
   say "${red}!${off} Google Chrome not found. Install it, or set CHROME_PATH to a Chrome/Chromium binary before using the skills."
 fi
 
+# Pillow (only for photo-real mockups: laying the logo onto generated photos)
+if ! python3 -c "import PIL" >/dev/null 2>&1; then
+  say "${dim}  note: for photo-real mockups, install Pillow: pip3 install pillow${off}"
+fi
+
 mkdir -p "$target"
 stamp="$(date +%Y%m%d-%H%M%S)"
 # backups go next to the skills folder, not inside it, so Claude doesn't load them twice

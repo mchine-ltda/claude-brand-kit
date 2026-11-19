@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>{{BRAND}} Overlays</title>
+<!--
+  brand-kit skill · OVERLAYS for photo-real mockups. Transparent pieces to
+  lay onto generated photos with scripts/composite.py: the mark, the wordmark
+  and the headline, each in light and dark ink. Render all at once:
+    node SKILL_DIR/scripts/render.mjs overlays.html --transparent --scale 3 \
+      --shot "#mark-light=assets/ov-mark-light.png" --shot "#mark-dark=assets/ov-mark-dark.png" \
+      --shot "#wordmark-light=assets/ov-wordmark-light.png" --shot "#wordmark-dark=assets/ov-wordmark-dark.png" \
+      --shot "#lockup-light=assets/ov-lockup-light.png" --shot "#lockup-dark=assets/ov-lockup-dark.png" \
+      --shot "#headline-dark=assets/ov-headline-dark.png" --shot "#headline-light=assets/ov-headline-light.png" \
+      --shot "#tag-light=assets/ov-tag-light.png"
+-->
+{{FONT_LINKS}}
+<style>
+  {{FONT_FACES}}
+  :root { --base: {{BASE}}; --light: {{LIGHT}}; --accent: {{ACCENT}}; --accent-deep: {{ACCENT_DEEP}}; --ink: {{INK}};
+    --sans: {{DISPLAY_FONT}}, ui-sans-serif, system-ui, sans-serif; --serif: {{ACCENT_FONT}}, Georgia, serif; --mono: {{MONO_FONT}}, ui-monospace, Menlo, monospace; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: transparent; display: grid; gap: 30px; padding: 30px; font-family: var(--sans); }
+  .o { width: fit-content; padding: 8px; }
+  .light { color: var(--light); } .dark { color: var(--ink); }
+  .dark .acc { color: var(--accent-deep) !important; }
+  svg { display: block; width: 300px; height: 300px; }
+  .wm { display: inline-flex; align-items: baseline; font-size: 200px; font-weight: 600; letter-spacing: -0.045em; line-height: 1; white-space: nowrap; }
+  .wm .acc { color: var(--accent); }
+  .wm .dot-over { position: relative; }
+  .wm .dot-over b { position: absolute; left: 50%; top: 0.05em; width: 0.21em; height: 0.21em; translate: -50% 0; border-radius: 50%; background: var(--accent); }
+  .lockup { display: inline-flex; align-items: center; gap: 40px; }
+  .lockup svg { width: 190px; height: 190px; }
+  .hl { width: 1100px; font-size: 128px; font-weight: 700; line-height: 0.92; letter-spacing: -0.045em; text-transform: uppercase; }
+  .hl em { font-family: var(--serif); font-weight: 400; text-transform: none; letter-spacing: -0.01em; }
+  .hl b { display: inline-block; width: 0.2em; height: 0.2em; margin-left: 0.05em; border-radius: 50%; background: var(--accent); }
+  .dark.hl b { background: var(--accent-deep); }
+  .tag { font-family: var(--mono); font-size: 46px; letter-spacing: 0.3em; text-transform: uppercase; line-height: 1.8; text-align: center; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="mk" viewBox="0 0 32 32">{{MARK_SVG}}</symbol></defs></svg>
+<div class="o light" id="mark-light"><svg viewBox="0 0 32 32"><use href="#mk" /></svg></div>
+<div class="o dark" id="mark-dark" style="--accent: var(--accent-deep)"><svg viewBox="0 0 32 32"><use href="#mk" /></svg></div>
+<div class="o light" id="wordmark-light"><span class="wm">{{WORDMARK_HTML}}</span></div>
+<div class="o dark" id="wordmark-dark"><span class="wm">{{WORDMARK_HTML}}</span></div>
+<div class="o light" id="lockup-light"><span class="lockup"><svg viewBox="0 0 32 32"><use href="#mk" /></svg><span class="wm">{{WORDMARK_HTML}}</span></span></div>
+<div class="o dark" id="lockup-dark" style="--accent: var(--accent-deep)"><span class="lockup"><svg viewBox="0 0 32 32"><use href="#mk" /></svg><span class="wm">{{WORDMARK_HTML}}</span></span></div>
+<div class="o dark hl" id="headline-dark">{{HEADLINE_START}} <em>{{HEADLINE_LAST_WORD}}</em><b></b></div>
+<div class="o light hl" id="headline-light">{{HEADLINE_START}} <em>{{HEADLINE_LAST_WORD}}</em><b></b></div>
+<div class="o light tag" id="tag-light">{{TAG_LINE_1}}<br />{{TAG_LINE_2}}</div>
+</body>
+</html>

@@ -34,6 +34,7 @@ generator and stop there unless they ask.
 - `scripts/render.mjs <file.html> --shot "#id=out.png" [--transparent] [--pdf out.pdf] [--scale 2]` — PNG/JPG shots and PDFs with the local Chrome
 - `scripts/capture.mjs <url> <dir>` — `site-desktop.jpg` + `site-mobile.jpg` of a live site
 - `scripts/palette.mjs Name=#hex …` — RGB, HSL and WCAG contrast for every pair
+- `scripts/composite.py photo overlay out --corners …` — lays the logo/headline onto a generated photo in perspective (needs Pillow); `templates/overlays.html` renders those transparent pieces
 - `examples/kiln/brand.json` — every placeholder filled; copy it as the starting point
 
 Run scripts as `node SKILL_DIR/scripts/<script>.mjs`. They need `playwright-core`
@@ -73,8 +74,8 @@ makes, sells and uses** — read `references/applications.md` now.
 2. **Propose a set**: 5 items for the moodboard slots (in slot order) and the
    extra ones for the brand book's "In use" pages, from the starting sets in
    `references/applications.md`. Lead with the product itself when there is
-   one. Only two tiles are the same for everyone: the mark and the
-   type + palette card.
+   one. Two tiles are the same for everyone, always: the mark and the
+   summary card (category, type and palette — `item:summary`). Never drop them.
 3. **Let the person shape it** (`AskUserQuestion`): show the proposed list in
    words and ask: *Use this set · Add or remove items · Show me more options*.
    - "Add or remove": take their edits (plain text is fine).
@@ -83,11 +84,16 @@ makes, sells and uses** — read `references/applications.md` now.
      drawn), render it, send it, and let them pick (`multiSelect`).
    Nothing is drawn for the final boards until the list is agreed. When nobody
    is there to answer (an automated run), use the proposal and say so.
-4. **Coded or photo-real?** If an image-generation tool is connected in this
-   session, ask (`AskUserQuestion`): *Coded, stylised (free, every file theirs)
-   · Photo-real with <tool> (product and packaging shots)*. With no tool
-   connected, use coded and say photo-real is possible with an image generator.
-   Follow "Photo-real" in `references/applications.md` if chosen.
+4. **Photo-real or coded?** The board should feel alive — a person wearing
+   the shirt, the billboard in a real street, the bottle with condensation —
+   which needs photographs. Look for an image-generation tool in this session
+   (an MCP tool like `generate_image`, or a skill like Higgsfield's). If there
+   is one, ask (`AskUserQuestion`): *Photo-real with <tool> (Recommended;
+   spends its credits) · Coded, stylised (free)*. If there is none, use coded
+   and say that connecting an image generator makes it photo-real. Follow
+   "Photo-real" in `references/applications.md`: scenes generated without
+   lettering, then the real logo and headline laid on in perspective with
+   `scripts/composite.py`.
 5. **The product**: if it sells a physical product, draw it as `PRODUCT_SVG`
    (see "Drawing the product") or generate it — the board isn't finished
    without it.
@@ -140,4 +146,5 @@ makes, sells and uses** — read `references/applications.md` now.
 - A near-black or quiet base, one big colour, one loud accent that glows.
 - Light surfaces are never pure #fff; dark ones never pure #000.
 - One serif italic word per headline, closed with the accent dot.
-- Show the result as an image before talking about it; keep the reply short and concrete.
+- Show the result as an image in the chat (Read it, then send it) before talking about it; keep the reply short and concrete.
+- Never open working files or previews in the person's browser pane — boards are 1600 px wide and look oversized there. Render, check, and send the image.

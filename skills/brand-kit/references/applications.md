@@ -75,20 +75,74 @@ When the business sells a thing — a shoe, a candle, a chair, a ring — draw i
   the slot instead of reusing `PRODUCT_SVG`:
   `<div class="app app-product"><div class="plinth"></div><div class="product"><svg …></svg></div></div>`
 
-## Photo-real with an image generator (optional)
+## Photo-real: the board that feels alive (preferred when a generator is connected)
 
-Only when the person chooses it **and** an image tool is connected in this
-session (an image-generation MCP server or skill). Check its licence allows
-commercial use and say so.
+The look to aim for is a real brand campaign board: a person **wearing** the
+t-shirt, the billboard **in a real concrete underpass**, the bottle **with
+condensation on it**, the box **on a doorstep**, the cup **in someone's hands**.
+Coded drawings can't show people or real materials, so when an image tool is
+connected (an image-generation MCP tool such as Figma's `generate_image`, or a
+skill such as Higgsfield's), photo-real is the default; drawings are the
+fallback. Tell the person which tool you'll use, that each image spends its
+credits, and check its licence allows commercial use.
 
-1. Generate each item **without the logo** (generators garble lettering):
-   describe the object, material, setting and light, and give the palette as
-   hex values ("matte box in #2b2420 with an #ff6a3d band, studio light, dark
-   backdrop, no text, no logo"). Square or matching the slot's shape.
-2. Save into `assets/gen-<item>.jpg` and place it with the real logo laid on
-   top in CSS:
-   `<div class="app app-photo"><img class="bg" src="assets/gen-box.jpg" alt="" /><svg class="logo-on mk" style="left:44%;top:30%;width:12%" viewBox="0 0 32 32"><use href="#mark"/></svg></div>`
-3. Mix freely: generated photos for the product shots, coded items for flat
-   things (stationery, signs, billboard) where code is sharper.
-4. Look at every image before using it; regenerate anything with stray text,
-   warped products or wrong colours.
+**What stays coded:** tile 1 (the mark) and tile 7 (the summary card) — they
+are graphic, not photographs — and anything flat where code is sharper
+(letterhead, business cards) if a photo would add nothing.
+
+### 1 · Generate each scene without lettering
+
+Generators garble logos and text, so ask for **blank surfaces** where the brand
+goes and add the real logo afterwards. One house style for every image, in
+the spirit of a sportswear campaign board:
+
+> cinematic brand campaign photograph, dark moody studio, low-key lighting,
+> soft {ACCENT name} rim light ({ACCENT hex}), subtle haze, shallow depth of
+> field, 85mm lens, rich real textures, premium editorial look, **no text, no
+> letters, no logos, no watermark**
+
+Then the scene, with the brand colours as hex and the blank area named:
+
+| Item | Scene to ask for |
+|---|---|
+| tee | a person seen from behind, wearing a plain {BASE} t-shirt, blank upper back, a thin {ACCENT} line on the sleeve, dark studio |
+| billboard | a large blank {LIGHT} billboard in a concrete underpass, strip lights on the ceiling, wet floor reflections; for a person/product brand, the person or product on the right half of the board |
+| bottle | a matte {BASE} bottle with condensation droplets, a blank label panel, a {ACCENT} rim light, on a dark surface |
+| cup / mug | a takeaway cup / handmade mug in someone's hands, blank sleeve / blank side, morning light, café table |
+| box | a {BASE} product box with the lid on, blank lid, on a doorstep or a wooden table, tissue paper in {LIGHT} |
+| bag | a person holding a {BASE} paper shopping bag with rope handles, blank front, a street at dusk |
+| tag | a blank {INK} hang tag on a cord, hanging from a folded garment in {BASE} |
+| storefront | a shop front at dusk, a blank dark fascia sign above warm glowing windows, a street |
+| poster | a blank poster in a frame on a textured wall, a spotlight |
+| material | a macro photograph of {material} in {BASE}, a thin glowing {ACCENT} seam, blank centre |
+| product | the business's own product (describe it exactly), studio, on a plinth or in use |
+
+Generate at the slot's shape (moodboard: slots 2 and 3 about 1:1 and 4:3,
+slot 4 portrait 2:3, slots 5–6 tall 9:16; brand-book tiles 16:9 or 4:3).
+Look at every image (Read it); regenerate anything with stray letters, warped
+hands or products, or the wrong colours. Save as `assets/photo-<item>.jpg`.
+
+### 2 · Put the real brand onto it
+
+1. Render the overlays: fill `templates/overlays.html` and render it (the
+   command is in the file) — the mark, the wordmark, the lockup and the
+   headline, in light and dark ink, as transparent PNGs in `assets/`.
+2. Find the four corners of each blank surface in the photo (clockwise from
+   top left, in pixels — Read the image and estimate; inset a little from the
+   edges so the print has a margin).
+3. Lay it on:
+   `python3 SKILL_DIR/scripts/composite.py assets/photo-tee.jpg assets/ov-mark-light.png assets/photo-tee.jpg --corners 610,420 760,425 755,560 605,555 --blend multiply --opacity 0.9`
+   - fabric, paper, cardboard → `--blend multiply` (takes the folds and grain)
+   - printed boards, labels, lids → `--blend normal` (the scene's light is kept on top)
+   - lit signs, screens → `--blend screen`
+   Billboards get the headline (`ov-headline-dark.png`) on the left half and
+   the lockup or mark on the right; shirts and bottles get the mark.
+4. Look at the result; adjust the corners if it floats or skews wrong.
+
+### 3 · Place the photos
+
+In `brand.json` the slot becomes the photo:
+`"SLOT_4": "<div class=\"app app-photo\"><img class=\"bg\" src=\"assets/photo-tee.jpg\" alt=\"\" /></div>"`
+— the same markup works in the brand book's "In use" figures. Mix freely:
+photos for scenes with people and products, coded items for flat things.
+Say in the reply which images were generated, with which tool.

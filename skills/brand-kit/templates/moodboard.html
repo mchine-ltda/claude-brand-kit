@@ -84,19 +84,8 @@
   .slot6 { grid-area: 3 / 3 / 4 / 4; }
 {{>items.css}}
 
-  /* ---------- 7. type + palette ---------- */
-  .type { grid-area: 3 / 4 / 4 / 5; padding: 38px 40px 34px; display: flex; flex-direction: column; background: radial-gradient(55% 70% at 100% 0%, color-mix(in oklab, var(--accent) 75%, transparent), color-mix(in oklab, var(--accent) 8%, transparent) 60%, transparent 75%), radial-gradient(70% 60% at 0% 100%, #3a3a3a, transparent 70%), linear-gradient(160deg, #262626, #141414); }
-  .type .kick { font-size: 11px; color: color-mix(in oklab, var(--light) 82%, transparent); }
-  .type h3 { margin-top: 16px; font-size: 66px; line-height: 0.92; font-weight: 700; letter-spacing: -0.03em; text-transform: uppercase; }
-  .type .pair { margin-top: 12px; display: flex; gap: 22px; align-items: baseline; font-size: 15px; color: color-mix(in oklab, var(--light) 82%, transparent); }
-  .type .pair em { font-family: var(--serif); font-size: 26px; color: var(--light); }
-  .type .pair span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; }
-  .type .pal { margin-top: auto; }
-  .type .pal p { font-size: 11px; color: color-mix(in oklab, var(--light) 82%, transparent); }
-  .type .sw { margin-top: 16px; display: flex; gap: 14px; }
-  .type .sw div { display: grid; gap: 7px; }
-  .type .sw i { display: block; width: 92px; height: 22px; border-radius: 11px; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.14); }
-  .type .sw small { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; color: color-mix(in oklab, var(--light) 70%, transparent); text-transform: uppercase; }
+  /* ---------- 7. the summary card (standard in every kit; the summary item) ---------- */
+  .slot7 { grid-area: 3 / 4 / 4 / 5; }
 </style>
 </head>
 <body>
@@ -119,20 +108,7 @@
   <section class="t slot5">{{SLOT_5}}</section>
   <section class="t slot6">{{SLOT_6}}</section>
 
-  <section class="t type">
-    <p class="kick mono">{{CATEGORY}}</p>
-    <h3>{{DISPLAY_FONT_NAME_LINE_1}}<br />{{DISPLAY_FONT_NAME_LINE_2}}</h3>
-    <p class="pair"><em>{{ACCENT_FONT_NAME}}</em><span>{{MONO_FONT_NAME}}</span></p>
-    <div class="pal">
-      <p class="mono">Color palette</p>
-      <div class="sw">
-        <div><i style="background:var(--base)"></i><small>{{BASE_NAME}} {{BASE}}</small></div>
-        <div><i style="background:var(--light)"></i><small>{{LIGHT_NAME}} {{LIGHT}}</small></div>
-        <div><i style="background:var(--ink)"></i><small>{{INK_NAME}} {{INK}}</small></div>
-        <div><i style="background:var(--accent)"></i><small>{{ACCENT_NAME}} {{ACCENT}}</small></div>
-      </div>
-    </div>
-  </section>
+  <section class="t slot7">{{item:summary}}</section>
 </main>
 </body>
 </html>

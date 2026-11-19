@@ -133,8 +133,9 @@ anything. One refinement round, then lock it.
    the brand appears on from the business (the product itself first, its
    packaging, bag, shop, signage, stationery, uniform…) using the answers to
    "where will the brand be seen most"; the person keeps, removes or adds
-   items, or asks for the visual menu; then ask coded vs photo-real if an
-   image tool is connected. Nothing is drawn until the list is agreed.
+   items, or asks for the visual menu; then, if an image tool is connected,
+   recommend photo-real (people wearing and using the brand, real places) —
+   coded drawings are the fallback. Nothing is drawn until the list is agreed.
 4. Run the full **/brand-kit** flow from `brand-kit/SKILL.md` in the same
    folder: logo files, moodboard (slots from the agreed list; no live site
    yet → the drawn phone/laptop screens), brand guidelines PDF with its "In
