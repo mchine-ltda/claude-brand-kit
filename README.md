@@ -27,8 +27,16 @@
 
 Everything is drawn in HTML, CSS and SVG and rendered with the Chrome you
 already have. **No image generator needed, no API keys, no watermarks** — every
-file it makes is yours. If you have an image generator connected to Claude,
-you can choose photo-real product shots instead.
+file it makes is yours.
+
+> [!NOTE]
+> **Every image and asset on this page was made purely in code**, with no image
+> generator. Connecting one is **not necessary, but recommended for better
+> results**: with an image generator attached to Claude (an image-generation
+> MCP server or skill), mockups become photo-real (people wearing the merch,
+> the billboard in a real street, the product in someone's hands), and the real
+> logo is laid on top in code. Claude always asks before generating, because
+> each image spends that tool's credits.
 
 ## How `/brand-identity` works
 
@@ -244,12 +252,12 @@ own.
 
 ## FAQ
 
-**Does it use AI image generation?** Not unless you want it to. By default every
-mockup — the box, the bag, the storefront, the product — is drawn in CSS and
-SVG, so the files are yours and it needs no account or API key. If you have
-an image generator connected to Claude, it asks whether you'd like photo-real
-product and packaging shots instead; the real logo is laid on top in code,
-because generators garble lettering.
+**Do I need an image generator?** No. By default every mockup (the box, the
+bag, the storefront, the product, the merch) is drawn in CSS and SVG, so the
+files are yours and it needs no account or API key. A connected image
+generator is **recommended for better, more realistic results**: Claude then
+asks whether you'd like photo-real shots instead (or a mix), and lays the real
+logo on top in code, because generators garble lettering.
 
 **What about fonts?** It defaults to free Google Fonts (SIL Open Font Licence).
 If you use a paid font, put the licensed files in the kit's `assets/` folder;
