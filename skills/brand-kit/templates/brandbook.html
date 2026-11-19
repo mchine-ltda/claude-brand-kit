@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>{{BRAND}} Brand Guidelines</title>
+<!--
+  brand-kit skill · BRAND BOOK TEMPLATE.
+  Ten landscape pages of 1600 x 1000 in the moodboard's look (near-black
+  backdrop, rounded tiles, accent glows). Print to PDF:
+    node ~/.claude/skills/brand-kit/scripts/render.mjs brandbook.html --pdf {{slug}}-brand-guidelines.pdf
+  and a cover image:
+    node ~/.claude/skills/brand-kit/scripts/render.mjs brandbook.html --shot "#p-cover={{slug}}-brand-cover.png"
+  Fill every double-braced placeholder; numbers (RGB, contrast) come from
+  scripts/palette.mjs, never estimated. Words restate what the brand really
+  says and does: no invented clients, results or values.
+-->
+{{FONT_LINKS}}
+<style>
+  {{FONT_FACES}}
+  @page { size: 1600px 1000px; margin: 0; }
+  :root {
+    --base: {{BASE}};
+    --light: {{LIGHT}};
+    --accent: {{ACCENT}};
+    --accent-deep: {{ACCENT_DEEP}};
+    --ink: {{INK}};
+    --night: #0b0b0c;
+    --sans: {{DISPLAY_FONT}}, ui-sans-serif, system-ui, sans-serif;
+    --serif: {{ACCENT_FONT}}, Georgia, serif;
+    --mono: {{MONO_FONT}}, ui-monospace, Menlo, monospace;
+    --line: rgb(255 255 255 / 0.12);
+    --muted: color-mix(in oklab, var(--light) 64%, transparent);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--night); }
+  body { font-family: var(--sans); color: var(--light); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page {
+    position: relative; overflow: hidden; isolation: isolate;
+    width: 1600px; height: 1000px; padding: 64px 72px;
+    display: grid; grid-template-rows: auto 1fr auto; gap: 36px;
+    background: var(--night);
+    break-after: page;
+  }
+  .page:last-child { break-after: auto; }
+  .head { display: flex; justify-content: space-between; align-items: baseline; }
+  .mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); }
+  .foot { display: flex; justify-content: space-between; }
+  h1 { font-size: 104px; font-weight: 700; line-height: 0.9; letter-spacing: -0.05em; }
+  h2 { font-size: 64px; font-weight: 700; line-height: 0.92; letter-spacing: -0.045em; text-transform: uppercase; }
+  h2 em, h1 em { font-family: var(--serif); font-weight: 400; text-transform: none; letter-spacing: -0.015em; }
+  h3 { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; }
+  p { font-size: 18px; line-height: 1.5; color: color-mix(in oklab, var(--light) 82%, transparent); max-width: 60ch; }
+  .tile { position: relative; overflow: hidden; isolation: isolate; border-radius: 22px; box-shadow: inset 0 0 0 1px var(--line); background: #151515; }
+  .glow::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 70% at 100% 0%, color-mix(in oklab, var(--accent) 55%, transparent), transparent 70%); }
+  .grid { display: grid; gap: 14px; }
+  .dot { display: inline-block; width: 0.16em; height: 0.16em; margin-left: 0.05em; border-radius: 50%; background: var(--accent); }
+
+  .wm { display: inline-flex; align-items: baseline; font-weight: 600; letter-spacing: -0.045em; line-height: 1; }
+  /* the wordmark, set in the display face. Accent details: <span class="acc">.</span>
+     (the accent; the deep accent on light backgrounds). A dot drawn over a
+     letter: <span class="dot-over">ı<b></b></span>. Replace per brand. */
+  .wm .acc { color: var(--accent); }
+  .wm .dot-over { position: relative; }
+  .wm .dot-over b { position: absolute; left: 50%; top: 0.05em; width: 0.21em; height: 0.21em; translate: -50% 0; border-radius: 50%; background: var(--accent); }
+  .on-light .wm, .wm.on-light { color: var(--ink); }
+  .on-light .wm .acc, .wm.on-light .acc { color: var(--accent-deep); }
+  .on-light .wm .dot-over b, .wm.on-light .dot-over b { background: var(--accent-deep); }
+
+  /* cover */
+  #p-cover { background: radial-gradient(70% 80% at 85% 110%, color-mix(in oklab, var(--accent) 45%, transparent), transparent 70%), radial-gradient(60% 60% at 0% 0%, color-mix(in oklab, var(--base) 80%, transparent), transparent 70%), var(--night); }
+  #p-cover .center { align-self: center; display: grid; gap: 32px; }
+  #p-cover .wm { font-size: 220px; }
+  #p-cover .giant { position: absolute; right: -6%; bottom: -26%; width: 760px; color: var(--base); z-index: -1; opacity: 0.9; }
+
+  /* contents + idea */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .toc { list-style: none; display: grid; gap: 14px; counter-reset: s; }
+  .toc li { display: flex; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid var(--line); font-size: 20px; }
+  .toc li span { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+  .values { display: grid; gap: 14px; margin-top: 28px; }
+  .values .tile { padding: 22px 26px; }
+  .values b { display: block; font-size: 20px; margin-bottom: 6px; }
+  .values p { font-size: 16px; }
+
+  /* logo pages */
+  .logos { grid-template-columns: 1.4fr 1fr; grid-template-rows: 1fr 1fr; }
+  .logos .tile { display: grid; place-items: center; }
+  .logos .big { grid-row: span 2; background: radial-gradient(70% 60% at 0% 0%, color-mix(in oklab, var(--accent) 35%, transparent), transparent 60%), var(--base); }
+  .logos .big .wm { font-size: 170px; color: var(--light); }
+  .logos .chalk { background: var(--light); }
+  .logos .chalk .wm { font-size: 96px; }
+  .logos .mono-tile svg { width: 170px; }
+  .cap { position: absolute; left: 22px; bottom: 18px; }
+  .on-light .cap, .chalk .cap { color: color-mix(in oklab, var(--ink) 60%, transparent); }
+
+  .rules { grid-template-columns: 1.15fr 1fr; }
+  .space { display: grid; place-items: center; background: #151515; }
+  .space .box { position: relative; padding: 64px; outline: 1px dashed color-mix(in oklab, var(--accent) 70%, transparent); }
+  .space .box .wm { font-size: 120px; outline: 1px solid var(--line); }
+  .space .x { position: absolute; width: 64px; height: 64px; display: grid; place-items: center; font-family: var(--mono); font-size: 13px; color: var(--accent); background: color-mix(in oklab, var(--accent) 12%, transparent); }
+  .space .x.t { left: 50%; top: 0; translate: -50% 0; } .space .x.l { left: 0; top: 50%; translate: 0 -50%; }
+  .dont { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); }
+  .dont .tile { display: grid; place-items: center; background: #151515; }
+  .dont .tile .wm { font-size: 56px; color: var(--light); }
+  .dont .tile::after { content: "✕"; position: absolute; top: 12px; right: 16px; font-size: 18px; color: #ff5a4f; }
+  .dont .cap { font-size: 10px; }
+  .sizes { display: flex; gap: 40px; align-items: flex-end; margin-top: 24px; }
+  .sizes div { display: grid; gap: 10px; }
+
+  /* colour */
+  .swatches { grid-template-columns: 1.3fr 1fr 1fr 0.7fr; }
+  .swatch { border-radius: 22px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: inset 0 0 0 1px var(--line); }
+  .swatch h3 { font-size: 34px; }
+  .swatch dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; }
+  .swatch dt { opacity: 0.6; text-transform: uppercase; }
+  .swatch .role { font-size: 15px; line-height: 1.45; max-width: 26ch; }
+  .ratio { display: flex; height: 18px; border-radius: 9px; overflow: hidden; margin-top: 18px; box-shadow: inset 0 0 0 1px var(--line); }
+  .pairs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; }
+  .pair { border-radius: 14px; padding: 14px 16px; font-size: 15px; font-weight: 600; display: flex; justify-content: space-between; align-items: baseline; }
+  .pair small { font-family: var(--mono); font-size: 11px; font-weight: 400; }
+
+  /* type */
+  .types { grid-template-columns: 1.3fr 1fr; }
+  .spec { padding: 34px 38px; display: flex; flex-direction: column; justify-content: space-between; }
+  .spec .big { font-size: 150px; font-weight: 700; line-height: 0.85; letter-spacing: -0.05em; }
+  .spec .alpha { font-size: 26px; letter-spacing: 0.02em; color: var(--muted); }
+  .scale { display: grid; gap: 18px; padding: 34px 38px; }
+  .scale div { display: grid; grid-template-columns: 120px 1fr; align-items: baseline; gap: 16px; border-bottom: 1px solid var(--line); padding-bottom: 14px; }
+
+  /* graphic language */
+  .gl { grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; }
+  .gl .tile { padding: 26px; display: flex; flex-direction: column; justify-content: space-between; }
+  .gl .demo { flex: 1; display: grid; place-items: center; }
+  .btn { display: inline-flex; align-items: center; gap: 14px; height: 56px; padding: 0 8px 0 26px; border-radius: 14px; background: var(--accent); color: var(--ink); font-weight: 600; box-shadow: 0 0 0 1px var(--accent), 0 0 34px 2px color-mix(in oklab, var(--accent) 55%, transparent); }
+  .btn i { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--ink); color: var(--accent); font-style: normal; }
+  .aura { width: 100%; height: 100%; border-radius: 16px; background: radial-gradient(40% 50% at 30% 40%, color-mix(in oklab, var(--accent) 55%, transparent), transparent 70%), radial-gradient(40% 50% at 75% 70%, color-mix(in oklab, var(--light) 25%, transparent), transparent 70%), var(--base); }
+  .cardd { width: 80%; height: 70%; border-radius: 22px; background: var(--light); box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 55%, transparent), 0 0 60px -12px color-mix(in oklab, var(--accent) 70%, transparent); }
+  .hair { width: 70%; display: grid; gap: 6px; } .hair span { height: 3px; background: color-mix(in oklab, var(--light) 40%, transparent); }
+  .pill { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 16px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); }
+  .pill.on { background: var(--light); color: var(--ink); box-shadow: none; }
+
+  /* voice */
+  .voice { grid-template-columns: 1fr 1fr; align-items: start; }
+  .voice .tile { padding: 30px 34px; }
+  .voice ul { list-style: none; display: grid; gap: 14px; margin-top: 18px; }
+  .voice li { font-size: 22px; line-height: 1.4; padding-left: 26px; position: relative; }
+  .voice li::before { position: absolute; left: 0; top: 0; }
+  .do li::before { content: "✓"; color: var(--accent); }
+  .dont-say li::before { content: "✕"; color: #ff5a4f; }
+
+  /* applications */
+  .apps img { width: 100%; height: 100%; object-fit: cover; border-radius: 22px; box-shadow: inset 0 0 0 1px var(--line); }
+
+  /* assets */
+  .files { grid-template-columns: 1fr 1fr; align-items: start; }
+  .files .tile { padding: 30px 34px; }
+  .files ul { list-style: none; display: grid; gap: 12px; margin-top: 18px; font-family: var(--mono); font-size: 16px; }
+  .files li { display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+  .files li span { color: var(--muted); }
+  pre { margin-top: 18px; font-family: var(--mono); font-size: 16px; line-height: 1.6; color: color-mix(in oklab, var(--light) 85%, transparent); white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><symbol id="mark" viewBox="0 0 32 32">{{MARK_SVG}}</symbol></defs>
+</svg>
+
+<!-- 1 · COVER -->
+<section class="page" id="p-cover">
+  <div class="head"><span class="mono">{{BRAND_UPPER}} · Brand guidelines</span><span class="mono">{{VERSION}} · {{DATE}}</span></div>
+  <div class="center">
+    <span class="wm">{{WORDMARK_HTML}}</span>
+    <h2>Brand <em>guidelines</em><span class="dot"></span></h2>
+  </div>
+  <!-- the giant mark fills the bottom right, so the cover keeps its words on the left -->
+  <div class="foot"><span class="mono">{{CATEGORY}} · {{CITY}}, {{COUNTRY}}</span></div>
+  <svg class="giant" viewBox="0 0 32 32"><use href="#mark" /></svg>
+</section>
+
+<!-- 2 · CONTENTS + THE IDEA -->
+<section class="page">
+  <div class="head"><span class="mono">01 · The brand</span><span class="mono">{{BRAND_UPPER}}</span></div>
+  <div class="two">
+    <div>
+      <h2>{{IDEA_TITLE_START}} <em>{{IDEA_TITLE_LAST}}</em><span class="dot"></span></h2>
+      <p style="margin-top:28px">{{POSITIONING}}</p>
+      <div class="values">
+        <div class="tile glow"><b>{{VALUE_1}}</b><p>{{VALUE_1_LINE}}</p></div>
+        <div class="tile"><b>{{VALUE_2}}</b><p>{{VALUE_2_LINE}}</p></div>
+        <div class="tile"><b>{{VALUE_3}}</b><p>{{VALUE_3_LINE}}</p></div>
+      </div>
+    </div>
+    <ol class="toc">
+      <li>The brand <span>02</span></li>
+      <li>Logo <span>03</span></li>
+      <li>Logo use <span>04</span></li>
+      <li>Colour <span>05</span></li>
+      <li>Typography <span>06</span></li>
+      <li>Graphic language <span>07</span></li>
+      <li>Voice <span>08</span></li>
+      <li>Applications <span>09</span></li>
+      <li>Files and tokens <span>10</span></li>
+    </ol>
+  </div>
+  <div class="foot"><span class="mono">{{AUDIENCE}}</span><span class="mono">02</span></div>
+</section>
+
+<!-- 3 · LOGO -->
+<section class="page">
+  <div class="head"><span class="mono">02 · Logo</span><span class="mono">{{BRAND_UPPER}}</span></div>
+  <div class="grid logos">
+    <div class="tile big"><span class="wm">{{WORDMARK_HTML}}</span><span class="mono cap">Primary · on {{BASE_NAME}}</span></div>
+    <div class="tile chalk on-light"><span class="wm">{{WORDMARK_HTML}}</span><span class="mono cap">On light · {{LIGHT_NAME}}</span></div>
+    <div class="tile mono-tile"><svg viewBox="0 0 32 32" style="color:var(--light)"><rect width="32" height="32" rx="8" fill="var(--base)" /><use href="#mark" /></svg><span class="mono cap">Monogram · icons, avatars, favicon</span></div>
+  </div>
+  <div class="foot"><span class="mono">{{LOGO_NOTE}}</span><span class="mono">03</span></div>
+</section>
+
+<!-- 4 · LOGO USE -->
+<section class="page">
+  <div class="head"><span class="mono">03 · Logo use</span><span class="mono">{{BRAND_UPPER}}</span></div>
+  <div class="grid rules">
+    <div class="tile space">
+      <div class="box"><span class="wm" style="color:var(--light)">{{WORDMARK_HTML}}</span><span class="x t">x</span><span class="x l">x</span></div>
+      <span class="mono cap">Clear space: x on every side · {{CLEAR_SPACE_RULE}}</span>
+    </div>
+    <div class="grid" style="grid-template-rows:auto 1fr">
+      <div class="tile" style="padding:26px 30px">
+        <h3>Minimum size</h3>
+        <div class="sizes">
+          <div><span class="wm" style="font-size:44px;color:var(--light)">{{WORDMARK_HTML}}</span><span class="mono">Wordmark · {{MIN_WORDMARK}}</span></div>
+          <div><svg viewBox="0 0 32 32" width="40" style="color:var(--light)"><rect width="32" height="32" rx="8" fill="var(--base)" /><use href="#mark" /></svg><span class="mono">Monogram · {{MIN_MONOGRAM}}</span></div>
+        </div>
+      </div>
+      <div class="grid dont">
+        <div class="tile"><span class="wm" style="transform:scaleX(1.45)">{{WORDMARK_HTML}}</span><span class="mono cap">Don't stretch</span></div>
+        <div class="tile"><span class="wm" style="color:#ff5ac8">{{WORDMARK_HTML}}</span><span class="mono cap">Don't recolour</span></div>
+        <div class="tile"><span class="wm" style="rotate:-18deg">{{WORDMARK_HTML}}</span><span class="mono cap">Don't rotate</span></div>
+        <div class="tile"><span class="wm" style="text-shadow:6px 6px 0 #ff5a4f, 0 0 20px #fff">{{WORDMARK_HTML}}</span><span class="mono cap">No effects</span></div>
+        <div class="tile" style="background:repeating-linear-gradient(45deg,#ff9f1a 0 14px,#2a6cff 14px 28px)"><span class="wm">{{WORDMARK_HTML}}</span><span class="mono cap" style="color:#fff">No busy backgrounds</span></div>
+        <div class="tile"><span class="wm" style="color:transparent;-webkit-text-stroke:1.5px var(--light)">{{WORDMARK_HTML}}</span><span class="mono cap">No outlines</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mono">Always use the supplied files · never retype the logo</span><span class="mono">04</span></div>
+</section>
+
+<!-- 5 · COLOUR -->
+<section class="page">
+  <div class="head"><span class="mono">04 · Colour</span><span class="mono">{{BRAND_UPPER}}</span></div>
+  <div style="display:grid;grid-template-rows:1fr auto;gap:14px">
+    <div class="grid swatches">
+      <div class="swatch" style="background:var(--base);color:var(--light)"><h3>{{BASE_NAME}}</h3><div><p class="role" style="color:inherit">{{BASE_ROLE}}</p><dl style="margin-top:16px"><dt>Hex</dt><dd>{{BASE}}</dd><dt>RGB</dt><dd>{{BASE_RGB}}</dd></dl></div></div>
+      <div class="swatch" style="background:var(--light);color:var(--ink)"><h3>{{LIGHT_NAME}}</h3><div><p class="role" style="color:inherit">{{LIGHT_ROLE}}</p><dl style="margin-top:16px"><dt>Hex</dt><dd>{{LIGHT}}</dd><dt>RGB</dt><dd>{{LIGHT_RGB}}</dd></dl></div></div>
+      <div class="swatch" style="background:var(--ink);color:var(--light)"><h3>{{INK_NAME}}</h3><div><p class="role" style="color:inherit">{{INK_ROLE}}</p><dl style="margin-top:16px"><dt>Hex</dt><dd>{{INK}}</dd><dt>RGB</dt><dd>{{INK_RGB}}</dd></dl></div></div>
+      <div class="swatch" style="background:var(--accent);color:var(--ink)"><h3>{{ACCENT_NAME}}</h3><div><p class="role" style="color:inherit">{{ACCENT_ROLE}}</p><dl style="margin-top:16px"><dt>Hex</dt><dd>{{ACCENT}}</dd><dt>RGB</dt><dd>{{ACCENT_RGB}}</dd></dl></div></div>
+    </div>
+    <div>
+      <span class="mono">Proportion · roughly {{PROPORTION_TEXT}}</span>
+      <div class="ratio">{{PROPORTION_BAR}}</div>
+      <div class="pairs">{{CONTRAST_PAIRS}}</div>
+    </div>
+  </div>
+  <div class="foot"><span class="mono">Contrast: WCAG 2.1 ratios, measured</span><span class="mono">05</span></div>
+</section>
+
+<!-- 6 · TYPOGRAPHY -->
+<section class="page">
+  <div class="head"><span class="mono">05 · Typography</span><span class="mono">{{BRAND_UPPER}}</span></div>
+  <div class="grid types">
+    <div class="tile glow spec">
+      <span class="mono">Display + text · {{DISPLAY_FONT_NAME}}</span>
+      <span class="big">Aa</span>
+      <span class="alpha">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />abcdefghijklmnopqrstuvwxyz 0123456789</span>
+    </div>
+    <div class="grid" style="grid-template-rows:auto auto 1fr">
+      <div class="tile" style="padding:26px 30px"><span class="mono">Accent · {{ACCENT_FONT_NAME}}</span><div style="font-family:var(--serif);font-size:58px;font-style:italic;margin-top:8px">{{ACCENT_SAMPLE}}</div></div>
+      <div class="tile" style="padding:26px 30px"><span class="mono">Labels · {{MONO_FONT_NAME}}</span><div class="mono" style="margin-top:12px;font-size:16px;color:var(--light)">{{MONO_SAMPLE}}</div></div>
+      <div class="tile scale">
+        <div><span class="mono">Headline</span><span style="font-size:40px;font-weight:700;letter-spacing:-0.04em;line-height:1">{{HEADLINE_SHORT}}</span></div>
+        <div><span class="mono">Body</span><span style="font-size:18px">{{BODY_SAMPLE}}</span></div>
+        <div><span class="mono">Rule</span><span style="font-size:16px;color:var(--muted)">{{TYPE_RULE}}</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mono">{{FONT_LICENCE_NOTE}}</span><span class="mono">06</span></div>
+</section>
+
+<!-- 7 · GRAPHIC LANGUAGE -->
+<section class="page">
+  <div class="head"><span class="mono">06 · Graphic language</span><span class="mono">{{BRAND_UPPER}}</span></div>
+  <div class="grid gl">
+    <div class="tile"><span class="mono">The button</span><div class="demo"><span class="btn">{{CTA}} <i>→</i></span></div><p>{{GL_BUTTON}}</p></div>
+    <div class="tile"><span class="mono">Glow and drift</span><div class="demo"><div class="aura"></div></div><p>{{GL_GLOW}}</p></div>
+    <div class="tile"><span class="mono">Cards</span><div class="demo"><div class="cardd"></div></div><p>{{GL_CARDS}}</p></div>
+    <div class="tile"><span class="mono">The dot</span><div class="demo"><span style="font-size:120px;font-weight:700;letter-spacing:-0.05em;line-height:1">{{DOT_WORD}}<span class="dot"></span></span></div><p>{{GL_DOT}}</p></div>
+    <div class="tile"><span class="mono">Hairlines + labels</span><div class="demo"><div class="hair"><span style="width:90%"></span><span style="width:66%"></span><span style="width:78%"></span></div></div><p>{{GL_HAIR}}</p></div>
+    <div class="tile"><span class="mono">Pills</span><div class="demo" style="display:flex;gap:10px;justify-content:center"><span class="pill">{{PILL_1}}</span><span class="pill on">{{PILL_2}}</span></div><p>{{GL_PILLS}}</p></div>
+  </div>
+  <div class="foot"><span class="mono">Simple, never plain: few elements, each with a job</span><span class="mono">07</span></div>
+</section>
+
+<!-- 8 · VOICE -->
+<section class="page">
+  <div class="head"><span class="mono">07 · Voice</span><span class="mono">{{BRAND_UPPER}}</span></div>
+  <div class="grid voice">
+    <div class="tile glow do"><h3>Say it like this</h3><ul>{{VOICE_DO}}</ul></div>
+    <div class="tile dont-say"><h3>Not like this</h3><ul>{{VOICE_DONT}}</ul></div>
+  </div>
+  <div class="foot"><span class="mono">Headlines name who it's for and the outcome · no slogans</span><span class="mono">08</span></div>
+</section>
+
+<!-- 9 · APPLICATIONS -->
+<section class="page apps">
+  <div class="head"><span class="mono">08 · Applications</span><span class="mono">{{BRAND_UPPER}}</span></div>
+  <img src="{{MOODBOARD_SRC}}" alt="" />
+  <div class="foot"><span class="mono">Moodboard · {{DATE}}</span><span class="mono">09</span></div>
+</section>
+
+<!-- 10 · FILES + TOKENS -->
+<section class="page">
+  <div class="head"><span class="mono">09 · Files and tokens</span><span class="mono">{{BRAND_UPPER}}</span></div>
+  <div class="grid files">
+    <div class="tile"><h3>In this kit</h3><ul>{{FILE_LIST}}</ul></div>
+    <div class="tile glow"><h3>Design tokens</h3><pre>{{TOKENS_CSS}}</pre></div>
+  </div>
+  <div class="foot"><span class="mono">{{CONTACT_LINE}}</span><span class="mono">10</span></div>
+</section>
+</body>
+</html>

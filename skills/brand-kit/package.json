@@ -1,0 +1,9 @@
+{
+  "name": "brand-kit-skill",
+  "private": true,
+  "type": "module",
+  "description": "Render helpers for the brand-kit skill (headless Chrome via playwright-core; no browser download).",
+  "dependencies": {
+    "playwright-core": "1.56.1"
+  }
+}

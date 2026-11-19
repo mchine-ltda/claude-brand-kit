@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>{{BRAND}} Visual directions</title>
+<!--
+  brand-kit skill · DIRECTIONS TEMPLATE (used by brand-identity, stage 3).
+  Three visual directions side by side on one 1600 x 1000 board, each a card
+  in its own palette and type: a name, the idea in one line, a sample
+  headline, the brand name set in its display face, a button, swatches and
+  three mood words.
+
+  Placeholders: BRAND, FONT_LINKS (Google Fonts links for all three type
+  pairs), and for each direction N = 1, 2, 3:
+    DN_NAME, DN_LINE, DN_WORDS (three words, "·"-separated),
+    DN_BASE, DN_LIGHT, DN_INK, DN_ACCENT, DN_ACCENT_DEEP,
+    DN_DISPLAY (CSS font-family, quoted), DN_DISPLAY_NAME,
+    DN_ACCENT_FONT, DN_ACCENT_FONT_NAME,
+    DN_HEADLINE_START, DN_HEADLINE_LAST, DN_CTA,
+    DN_ON_BASE (the text colour on DN_BASE: DN_LIGHT on a dark base, DN_INK on a
+    light one; check it with scripts/palette.mjs)
+  Render: node ~/.claude/skills/brand-kit/scripts/render.mjs directions.html --shot "#board=directions.png"
+-->
+{{FONT_LINKS}}
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #0b0b0c; }
+  body { min-height: 100vh; display: grid; place-items: center; font-family: ui-sans-serif, system-ui, sans-serif; }
+  .board { width: 1600px; height: 1000px; padding: 40px; display: grid; grid-template-rows: auto 1fr; gap: 22px; background: #0b0b0c; color: #ecebe6; }
+  .top { display: flex; justify-content: space-between; align-items: baseline; font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: #9a9a96; }
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .d {
+    position: relative; overflow: hidden; isolation: isolate;
+    display: grid; grid-template-rows: auto 1fr auto auto; gap: 22px;
+    padding: 30px 30px 26px; border-radius: 22px;
+    background: radial-gradient(70% 55% at 100% 0%, color-mix(in oklab, var(--accent) 40%, transparent), transparent 70%), var(--base);
+    color: var(--on-base);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1);
+    font-family: var(--display), ui-sans-serif, system-ui, sans-serif;
+  }
+  .tag { display: flex; justify-content: space-between; align-items: baseline; font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: color-mix(in oklab, var(--on-base) 70%, transparent); }
+  .tag b { font-size: 34px; letter-spacing: 0; font-family: var(--display); color: var(--accent); }
+  .name { font-size: 30px; font-weight: 700; letter-spacing: -0.03em; }
+  .line { margin-top: 8px; font-size: 16px; line-height: 1.45; color: color-mix(in oklab, var(--on-base) 80%, transparent); font-family: ui-sans-serif, system-ui, sans-serif; }
+  .panel { align-self: end; border-radius: 18px; padding: 26px 24px 22px; background: var(--light); color: var(--ink); display: grid; gap: 18px; }
+  .wm { font-size: 46px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
+  .wm i { font-style: normal; color: var(--accent-deep); }
+  .hl { font-size: 30px; font-weight: 700; line-height: 0.98; letter-spacing: -0.035em; }
+  .hl em { font-family: var(--accent-font), Georgia, serif; font-weight: 400; letter-spacing: -0.01em; }
+  .btn { justify-self: start; display: inline-flex; align-items: center; gap: 10px; height: 42px; padding: 0 6px 0 18px; border-radius: 12px; background: var(--ink); color: var(--accent); font-size: 14px; font-weight: 600; }
+  .btn span { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 9px; background: var(--accent); color: var(--ink); }
+  .sw { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .sw div { display: grid; gap: 6px; }
+  .sw i { height: 34px; border-radius: 10px; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.16); }
+  .sw small { font-family: ui-monospace, Menlo, monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in oklab, var(--on-base) 72%, transparent); }
+  .foot { display: flex; justify-content: space-between; gap: 12px; font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: color-mix(in oklab, var(--on-base) 72%, transparent); }
+</style>
+</head>
+<body>
+<main class="board" id="board">
+  <div class="top"><span>{{BRAND}} · Visual directions</span><span>Choose one · or mix</span></div>
+  <div class="cols">
+    <section class="d" style='--base:{{D1_BASE}};--light:{{D1_LIGHT}};--ink:{{D1_INK}};--accent:{{D1_ACCENT}};--accent-deep:{{D1_ACCENT_DEEP}};--display:{{D1_DISPLAY}};--accent-font:{{D1_ACCENT_FONT}};--on-base:{{D1_ON_BASE}}'>
+      <div class="tag"><span>Direction</span><b>A</b></div>
+      <div><p class="name">{{D1_NAME}}</p><p class="line">{{D1_LINE}}</p></div>
+      <div class="panel"><span class="wm">{{BRAND}}<i>.</i></span><p class="hl">{{D1_HEADLINE_START}} <em>{{D1_HEADLINE_LAST}}</em></p><span class="btn">{{D1_CTA}} <span>→</span></span></div>
+      <div class="sw"><div><i style="background:{{D1_BASE}}"></i><small>{{D1_BASE}}</small></div><div><i style="background:{{D1_LIGHT}}"></i><small>{{D1_LIGHT}}</small></div><div><i style="background:{{D1_INK}}"></i><small>{{D1_INK}}</small></div><div><i style="background:{{D1_ACCENT}}"></i><small>{{D1_ACCENT}}</small></div></div>
+      <div class="foot"><span>{{D1_DISPLAY_NAME}} + {{D1_ACCENT_FONT_NAME}}</span><span>{{D1_WORDS}}</span></div>
+    </section>
+    <section class="d" style='--base:{{D2_BASE}};--light:{{D2_LIGHT}};--ink:{{D2_INK}};--accent:{{D2_ACCENT}};--accent-deep:{{D2_ACCENT_DEEP}};--display:{{D2_DISPLAY}};--accent-font:{{D2_ACCENT_FONT}};--on-base:{{D2_ON_BASE}}'>
+      <div class="tag"><span>Direction</span><b>B</b></div>
+      <div><p class="name">{{D2_NAME}}</p><p class="line">{{D2_LINE}}</p></div>
+      <div class="panel"><span class="wm">{{BRAND}}<i>.</i></span><p class="hl">{{D2_HEADLINE_START}} <em>{{D2_HEADLINE_LAST}}</em></p><span class="btn">{{D2_CTA}} <span>→</span></span></div>
+      <div class="sw"><div><i style="background:{{D2_BASE}}"></i><small>{{D2_BASE}}</small></div><div><i style="background:{{D2_LIGHT}}"></i><small>{{D2_LIGHT}}</small></div><div><i style="background:{{D2_INK}}"></i><small>{{D2_INK}}</small></div><div><i style="background:{{D2_ACCENT}}"></i><small>{{D2_ACCENT}}</small></div></div>
+      <div class="foot"><span>{{D2_DISPLAY_NAME}} + {{D2_ACCENT_FONT_NAME}}</span><span>{{D2_WORDS}}</span></div>
+    </section>
+    <section class="d" style='--base:{{D3_BASE}};--light:{{D3_LIGHT}};--ink:{{D3_INK}};--accent:{{D3_ACCENT}};--accent-deep:{{D3_ACCENT_DEEP}};--display:{{D3_DISPLAY}};--accent-font:{{D3_ACCENT_FONT}};--on-base:{{D3_ON_BASE}}'>
+      <div class="tag"><span>Direction</span><b>C</b></div>
+      <div><p class="name">{{D3_NAME}}</p><p class="line">{{D3_LINE}}</p></div>
+      <div class="panel"><span class="wm">{{BRAND}}<i>.</i></span><p class="hl">{{D3_HEADLINE_START}} <em>{{D3_HEADLINE_LAST}}</em></p><span class="btn">{{D3_CTA}} <span>→</span></span></div>
+      <div class="sw"><div><i style="background:{{D3_BASE}}"></i><small>{{D3_BASE}}</small></div><div><i style="background:{{D3_LIGHT}}"></i><small>{{D3_LIGHT}}</small></div><div><i style="background:{{D3_INK}}"></i><small>{{D3_INK}}</small></div><div><i style="background:{{D3_ACCENT}}"></i><small>{{D3_ACCENT}}</small></div></div>
+      <div class="foot"><span>{{D3_DISPLAY_NAME}} + {{D3_ACCENT_FONT_NAME}}</span><span>{{D3_WORDS}}</span></div>
+    </section>
+  </div>
+</main>
+</body>
+</html>

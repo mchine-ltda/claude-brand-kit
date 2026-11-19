@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>{{BRAND}} Logo</title>
+<!--
+  brand-kit skill · LOGO TEMPLATE.
+  Each #id below becomes its own transparent PNG at 2x:
+    node ~/.claude/skills/brand-kit/scripts/render.mjs logo.html --transparent \
+      --shot "#wordmark-light={{slug}}-wordmark-light.png" \
+      --shot "#wordmark-dark={{slug}}-wordmark-dark.png" \
+      --shot "#monogram={{slug}}-monogram.png" \
+      --shot "#mark={{slug}}-mark.png"
+  Also save the SVGs (mark + monogram tile) by copying the inline <svg>s into
+  .svg files, and the wordmark as SVG only if it is drawn as paths (live text
+  in an SVG needs the font installed wherever it is opened).
+  On a light background the accent is usually too pale: use --accent-deep.
+-->
+{{FONT_LINKS}}
+<style>
+  {{FONT_FACES}}
+  :root {
+    --base: {{BASE}};
+    --light: {{LIGHT}};
+    --accent: {{ACCENT}};
+    --accent-deep: {{ACCENT_DEEP}};
+    --ink: {{INK}};
+    --sans: {{DISPLAY_FONT}}, ui-sans-serif, system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: transparent; display: grid; gap: 40px; padding: 40px; font-family: var(--sans); }
+  .logo { display: inline-flex; width: fit-content; padding: 40px 48px; }
+
+  .wm { display: inline-flex; align-items: baseline; font-size: 220px; font-weight: 600; letter-spacing: -0.045em; line-height: 1; }
+  /* the wordmark, set in the display face. Accent details: <span class="acc">.</span>
+     (the accent; the deep accent on light backgrounds). A dot drawn over a
+     letter: <span class="dot-over">ı<b></b></span>. Replace per brand. */
+  .wm .acc { color: var(--accent); }
+  .wm .dot-over { position: relative; }
+  .wm .dot-over b { position: absolute; left: 50%; top: 0.05em; width: 0.21em; height: 0.21em; translate: -50% 0; border-radius: 50%; background: var(--accent); }
+  .on-dark { color: var(--light); }
+  .on-light { color: var(--ink); }
+  .on-light .acc { color: var(--accent-deep); }
+  .on-light .dot-over b { background: var(--accent-deep); }
+
+  .square { width: 600px; height: 600px; padding: 0; }
+  .square svg { display: block; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+  <!-- the wordmark in light letters: for dark backgrounds -->
+  <div class="logo" id="wordmark-light"><span class="wm on-dark">{{WORDMARK_HTML}}</span></div>
+  <!-- the wordmark in ink letters: for light backgrounds -->
+  <div class="logo" id="wordmark-dark"><span class="wm on-light">{{WORDMARK_HTML}}</span></div>
+  <!-- the monogram on its rounded tile: app icon, favicon, avatars -->
+  <div class="logo square" id="monogram">
+    <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="var(--base)" /><g style="color: var(--light)">{{MARK_SVG}}</g></svg>
+  </div>
+  <!-- the mark alone, no tile -->
+  <div class="logo square" id="mark">
+    <svg viewBox="0 0 32 32" style="color: var(--ink)">{{MARK_SVG}}</svg>
+  </div>
+</body>
+</html>

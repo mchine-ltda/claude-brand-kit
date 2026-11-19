@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>{{BRAND}} Logo concepts</title>
+<!--
+  brand-kit skill · LOGO CONCEPTS TEMPLATE (used by brand-identity, stage 4).
+  Four logo concepts on one 1600 x 1000 board, in the chosen direction's
+  palette. Each tile shows the concept large on the base colour, small on the
+  light colour (and at 24 px, to prove it survives), its type and the idea.
+
+  Placeholders: BRAND, FONT_LINKS, BASE, LIGHT, INK, ACCENT, ACCENT_DEEP,
+  DISPLAY_FONT, and for each concept N = 1..4:
+    CN_TYPE  (Wordmark · Monogram · Symbol + wordmark · Emblem)
+    CN_ART   the logo as HTML/SVG, drawn with currentColor + var(--accent);
+             it is placed three times (large, small, tiny), so it must scale
+    CN_WHY   one line: the idea behind it
+  Render: node ~/.claude/skills/brand-kit/scripts/render.mjs logo-concepts.html --shot "#board=logo-concepts.png"
+-->
+{{FONT_LINKS}}
+<style>
+  :root { --base: {{BASE}}; --light: {{LIGHT}}; --ink: {{INK}}; --accent: {{ACCENT}}; --accent-deep: {{ACCENT_DEEP}}; --display: {{DISPLAY_FONT}}; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #0b0b0c; }
+  body { min-height: 100vh; display: grid; place-items: center; font-family: var(--display), ui-sans-serif, system-ui, sans-serif; }
+  .board { width: 1600px; height: 1000px; padding: 40px; display: grid; grid-template-rows: auto 1fr; gap: 22px; background: #0b0b0c; color: var(--light); }
+  .top { display: flex; justify-content: space-between; font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: #9a9a96; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px; }
+  .c { position: relative; overflow: hidden; isolation: isolate; display: grid; grid-template-columns: 1.5fr 1fr; border-radius: 22px; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1); }
+  .big { position: relative; display: grid; place-items: center; padding: 30px; background: radial-gradient(70% 60% at 0% 0%, color-mix(in oklab, var(--accent) 35%, transparent), transparent 65%), var(--base); color: var(--light); }
+  .big .art { font-size: 64px; line-height: 1; display: grid; place-items: center; }
+  .big .art svg { width: 150px; height: auto; }
+  .n { position: absolute; left: 22px; top: 18px; font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: color-mix(in oklab, var(--light) 70%, transparent); }
+  .n b { color: var(--accent); font-size: 22px; letter-spacing: 0; margin-right: 8px; }
+  .side { display: grid; grid-template-rows: 1fr auto; background: var(--light); color: var(--ink); --accent: var(--accent-deep); }
+  .small { display: grid; place-items: center; gap: 16px; padding: 22px; }
+  .small .art { font-size: 30px; line-height: 1; display: grid; place-items: center; }
+  .small .art svg { width: 70px; height: auto; }
+  .tiny { display: flex; align-items: center; gap: 10px; font-family: ui-monospace, Menlo, monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: color-mix(in oklab, var(--ink) 60%, transparent); }
+  .tiny .art { font-size: 12px; line-height: 1; display: grid; place-items: center; font-family: var(--display); text-transform: none; letter-spacing: normal; } .tiny .art svg { width: 24px; height: auto; }
+  .why { padding: 16px 20px 18px; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px; line-height: 1.4; border-top: 1px solid color-mix(in oklab, var(--ink) 14%, transparent); }
+</style>
+</head>
+<body>
+<main class="board" id="board">
+  <div class="top"><span>{{BRAND}} · Logo concepts</span><span>Choose one · we refine it once</span></div>
+  <div class="grid">
+    <section class="c"><div class="big"><span class="n"><b>1</b>{{C1_TYPE}}</span><div class="art">{{C1_ART}}</div></div><div class="side"><div class="small"><div class="art">{{C1_ART}}</div><div class="tiny"><div class="art">{{C1_ART}}</div>at 24 px</div></div><p class="why">{{C1_WHY}}</p></div></section>
+    <section class="c"><div class="big"><span class="n"><b>2</b>{{C2_TYPE}}</span><div class="art">{{C2_ART}}</div></div><div class="side"><div class="small"><div class="art">{{C2_ART}}</div><div class="tiny"><div class="art">{{C2_ART}}</div>at 24 px</div></div><p class="why">{{C2_WHY}}</p></div></section>
+    <section class="c"><div class="big"><span class="n"><b>3</b>{{C3_TYPE}}</span><div class="art">{{C3_ART}}</div></div><div class="side"><div class="small"><div class="art">{{C3_ART}}</div><div class="tiny"><div class="art">{{C3_ART}}</div>at 24 px</div></div><p class="why">{{C3_WHY}}</p></div></section>
+    <section class="c"><div class="big"><span class="n"><b>4</b>{{C4_TYPE}}</span><div class="art">{{C4_ART}}</div></div><div class="side"><div class="small"><div class="art">{{C4_ART}}</div><div class="tiny"><div class="art">{{C4_ART}}</div>at 24 px</div></div><p class="why">{{C4_WHY}}</p></div></section>
+  </div>
+</main>
+</body>
+</html>

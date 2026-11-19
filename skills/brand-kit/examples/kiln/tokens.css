@@ -1,0 +1,15 @@
+:root {
+  /* Kiln design tokens (v1.0) · a fictional brand made with Claude Brand Kit */
+  --clay: #2b2420;        /* the studio's colour: large surfaces */
+  --bisque: #f3eee6;      /* unglazed clay: cards, text on clay */
+  --char: #1a1614;        /* text on bisque and ember */
+  --ember: #ff6a3d;       /* the fire: buttons, the dot, glows */
+  --ember-deep: #c8461f;  /* ember that reads on bisque */
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-accent: "Fraunces", Georgia, serif;
+  --font-mono: "Geist Mono", ui-monospace, Menlo, monospace;
+  --radius-button: 14px;
+  --radius-card: 22px;
+  --radius-panel: 28px;
+  --glow: 0 0 70px -14px rgb(255 106 61 / 0.7);
+}

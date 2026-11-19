@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>{{BRAND}} Brand strategy</title>
+<!--
+  brand-kit skill · STRATEGY TEMPLATE (used by brand-identity, stage 5).
+  Five landscape pages (1600 x 1000) in the brand book's look: cover · why ·
+  who · position · voice and messages. Filled from brand-strategy.md.
+  Render: node ~/.claude/skills/brand-kit/scripts/render.mjs strategy.html --pdf {{slug}}-brand-strategy.pdf
+  Uses the same brand.json as the brand book, plus:
+    PURPOSE, VISION, MISSION, PERSONA_NAME, PERSONA (2–3 sentences),
+    PERSONA_NEEDS / PERSONA_NOW / PERSONA_WORRIES (<li> items),
+    POSITIONING_STATEMENT, PROMISE, DIFFERENCE, ALTERNATIVES (<li> items),
+    PERSONALITY_1..3, PILLAR_1..3 + PILLAR_N_LINE, HEADLINE_OPTIONS (<li> items),
+    and the brand book's VALUE_N, VOICE_DO, VOICE_DONT.
+-->
+{{FONT_LINKS}}
+<style>
+  {{FONT_FACES}}
+  @page { size: 1600px 1000px; margin: 0; }
+  :root {
+    --base: {{BASE}}; --light: {{LIGHT}}; --accent: {{ACCENT}}; --accent-deep: {{ACCENT_DEEP}}; --ink: {{INK}};
+    --night: #0b0b0c;
+    --sans: {{DISPLAY_FONT}}, ui-sans-serif, system-ui, sans-serif;
+    --serif: {{ACCENT_FONT}}, Georgia, serif;
+    --mono: {{MONO_FONT}}, ui-monospace, Menlo, monospace;
+    --line: rgb(255 255 255 / 0.12);
+    --muted: color-mix(in oklab, var(--light) 64%, transparent);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--night); }
+  body { font-family: var(--sans); color: var(--light); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { position: relative; overflow: hidden; isolation: isolate; width: 1600px; height: 1000px; padding: 64px 72px; display: grid; grid-template-rows: auto 1fr auto; gap: 36px; background: var(--night); break-after: page; }
+  .page:last-child { break-after: auto; }
+  .head, .foot { display: flex; justify-content: space-between; }
+  .mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); }
+  h1 { font-size: 120px; font-weight: 700; line-height: 0.88; letter-spacing: -0.05em; }
+  h2 { font-size: 60px; font-weight: 700; line-height: 0.92; letter-spacing: -0.045em; text-transform: uppercase; }
+  h1 em, h2 em { font-family: var(--serif); font-weight: 400; text-transform: none; letter-spacing: -0.015em; }
+  h3 { font-size: 24px; font-weight: 600; letter-spacing: -0.02em; }
+  p, li { font-size: 19px; line-height: 1.5; color: color-mix(in oklab, var(--light) 84%, transparent); }
+  .dot { display: inline-block; width: 0.16em; height: 0.16em; margin-left: 0.05em; border-radius: 50%; background: var(--accent); }
+  .tile { position: relative; overflow: hidden; isolation: isolate; border-radius: 22px; box-shadow: inset 0 0 0 1px var(--line); background: #151515; padding: 28px 32px; }
+  .glow::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 70% at 100% 0%, color-mix(in oklab, var(--accent) 50%, transparent), transparent 70%); }
+  .grid { display: grid; gap: 14px; align-items: start; align-content: start; }
+  ul { list-style: none; display: grid; gap: 10px; margin-top: 14px; }
+  li { padding-left: 22px; position: relative; } li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  .big-quote { font-size: 44px; line-height: 1.12; letter-spacing: -0.03em; color: var(--light); font-weight: 500; max-width: 26ch; }
+  .big-quote em { font-family: var(--serif); font-weight: 400; color: var(--accent); }
+  #s-cover { background: radial-gradient(70% 80% at 90% 110%, color-mix(in oklab, var(--accent) 40%, transparent), transparent 70%), var(--night); }
+  #s-cover .center { align-self: center; display: grid; gap: 28px; }
+  .chalk { background: var(--light); color: var(--ink); box-shadow: none; }
+  .chalk p, .chalk li { color: color-mix(in oklab, var(--ink) 80%, transparent); }
+  .chalk li::before { color: var(--accent-deep); }
+  .do li::before { content: "✓"; } .dont li::before { content: "✕"; color: #ff5a4f; }
+</style>
+</head>
+<body>
+<!-- 1 · COVER -->
+<section class="page" id="s-cover">
+  <div class="head"><span class="mono">{{BRAND_UPPER}} · Brand strategy</span><span class="mono">{{VERSION}} · {{DATE}}</span></div>
+  <div class="center">
+    <h1>{{BRAND}}<span class="dot"></span></h1>
+    <p class="big-quote">{{PROMISE}}</p>
+  </div>
+  <div class="foot"><span class="mono">{{CATEGORY}} · {{CITY}}, {{COUNTRY}}</span><span class="mono">01</span></div>
+</section>
+
+<!-- 2 · WHY -->
+<section class="page">
+  <div class="head"><span class="mono">01 · Why</span><span class="mono">{{BRAND_UPPER}}</span></div>
+  <div class="grid" style="grid-template-columns:1.2fr 1fr">
+    <div class="tile glow"><span class="mono">Purpose</span><p class="big-quote" style="margin-top:18px">{{PURPOSE}}</p></div>
+    <div class="grid">
+      <div class="tile"><span class="mono">Vision · 3 years</span><p style="margin-top:12px">{{VISION}}</p></div>
+      <div class="tile"><span class="mono">Mission · every day</span><p style="margin-top:12px">{{MISSION}}</p></div>
+      <div class="tile chalk"><span class="mono" style="color:inherit;opacity:.6">Values</span><ul><li><b>{{VALUE_1}}</b> — {{VALUE_1_LINE}}</li><li><b>{{VALUE_2}}</b> — {{VALUE_2_LINE}}</li><li><b>{{VALUE_3}}</b> — {{VALUE_3_LINE}}</li></ul></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mono">Intentions, not claims</span><span class="mono">02</span></div>
+</section>
+
+<!-- 3 · WHO -->
+<section class="page">
+  <div class="head"><span class="mono">02 · Who it's for</span><span class="mono">{{BRAND_UPPER}}</span></div>
+  <div class="grid" style="grid-template-columns:1fr 1fr 1fr">
+    <div class="tile glow" style="grid-column:span 3"><span class="mono">The first customer</span><h2 style="margin-top:14px">{{PERSONA_NAME}}<span class="dot"></span></h2><p style="margin-top:14px;max-width:70ch">{{PERSONA}}</p></div>
+    <div class="tile"><h3>What they need</h3><ul>{{PERSONA_NEEDS}}</ul></div>
+    <div class="tile"><h3>What they use now</h3><ul>{{PERSONA_NOW}}</ul></div>
+    <div class="tile"><h3>What worries them</h3><ul>{{PERSONA_WORRIES}}</ul></div>
+  </div>
+  <div class="foot"><span class="mono">{{AUDIENCE}}</span><span class="mono">03</span></div>
+</section>
+
+<!-- 4 · POSITION -->
+<section class="page">
+  <div class="head"><span class="mono">03 · Position</span><span class="mono">{{BRAND_UPPER}}</span></div>
+  <div class="grid" style="grid-template-columns:1.3fr 1fr">
+    <div class="tile chalk" style="padding:40px 44px"><span class="mono" style="color:inherit;opacity:.6">Positioning statement</span><p class="big-quote" style="margin-top:18px;color:var(--ink)">{{POSITIONING_STATEMENT}}</p></div>
+    <div class="grid">
+      <div class="tile glow"><h3>What makes it different</h3><p style="margin-top:12px">{{DIFFERENCE}}</p></div>
+      <div class="tile"><h3>The alternatives today</h3><ul>{{ALTERNATIVES}}</ul></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mono">For · who · is the · that · because</span><span class="mono">04</span></div>
+</section>
+
+<!-- 5 · VOICE AND MESSAGES -->
+<section class="page">
+  <div class="head"><span class="mono">04 · Voice and messages</span><span class="mono">{{BRAND_UPPER}}</span></div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+    <div class="tile glow"><span class="mono">Personality</span><h2 style="margin-top:14px;font-size:44px">{{PERSONALITY_1}}<br />{{PERSONALITY_2}}<br /><em>{{PERSONALITY_3}}</em></h2></div>
+    <div class="tile"><span class="mono">Messaging pillars</span><ul><li><b>{{PILLAR_1}}</b> — {{PILLAR_1_LINE}}</li><li><b>{{PILLAR_2}}</b> — {{PILLAR_2_LINE}}</li><li><b>{{PILLAR_3}}</b> — {{PILLAR_3_LINE}}</li></ul></div>
+    <div class="tile chalk"><span class="mono" style="color:inherit;opacity:.6">Headline options</span><ul>{{HEADLINE_OPTIONS}}</ul></div>
+    <div class="tile do" style="grid-column:span 2"><h3>Say it like this</h3><ul>{{VOICE_DO}}</ul></div>
+    <div class="tile dont"><h3>Not like this</h3><ul>{{VOICE_DONT}}</ul></div>
+  </div>
+  <div class="foot"><span class="mono">Headlines say who it's for and the outcome</span><span class="mono">05</span></div>
+</section>
+</body>
+</html>
