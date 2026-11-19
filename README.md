@@ -48,8 +48,7 @@ file it makes is yours.
 > models** (on Higgsfield's free plan, the GPT Image models need a paid plan);
 > Claude checks what your plan can run before starting and tells you which
 > model it will use. Free plans also often don't allow commercial use, so
-> check before printing. Shades can look slightly different from your hex
-> codes under real lighting; that's normal for photos.
+> check before printing.
 
 ## How `/brand-identity` works
 
