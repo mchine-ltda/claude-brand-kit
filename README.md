@@ -68,7 +68,7 @@ business makes and where customers meet it, and **proposes the items the
 brand should appear on**. You keep the list, add or remove items, or ask to
 **see the options** drawn in your colours:
 
-<p align="center"><img src="docs/applications-menu.jpg" alt="A menu of twelve applications drawn in Kiln's colours: storefront, shipping box, the product, seal sticker, shopping bag, clay close-up, class poster, business cards, studio tee, mug, letterhead and phone." width="100%" /></p>
+<p align="center"><img src="docs/applications-menu.jpg" alt="A menu of applications drawn in Kiln's colours, starting with the summary card that every kit includes: storefront, shipping box, the product, seal sticker, shopping bag, clay close-up, class poster, business cards, studio tee, mug, letterhead and phone." width="100%" /></p>
 
 There are 17 drawn items — billboard, storefront, material close-up,
 letterhead, business cards, box, shopping bag, hang tag, poster, t-shirt,
